@@ -7,14 +7,8 @@ package com.example.aventurasdemarcoyluis;
  * @version 1.0
  * @since 2021-09-14
  */
-public abstract class Items {
-
-    public Items(){
-
+public class Boo extends Enemies{
+    public Boo(int LVL, int ATK, int DEF, int HPMax, int FPMax){
+        super(LVL, ATK, DEF, HPMax, FPMax);
     }
-
-    /**
-     * An abstract method that activates the effect of an Item Object.
-     */
-    public abstract void activate();
 }
