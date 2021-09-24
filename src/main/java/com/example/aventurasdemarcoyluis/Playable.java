@@ -1,5 +1,9 @@
 package com.example.aventurasdemarcoyluis;
 
+
+/**
+ * This Playable interface shares all basics methods that all Characters need.
+ */
 public interface Playable {
 
     default int getLVL() {
