@@ -1,5 +1,8 @@
 package com.example.aventurasdemarcoyluis;
 
+import java.util.Objects;
+import java.lang.Math;
+
 /**
  * Creates template with shared data of all types of characters in the game.
  * It handles all the stats (set, get, add) for all characters, also ir checks
@@ -9,7 +12,7 @@ package com.example.aventurasdemarcoyluis;
  * @version 1.0
  * @since 2021-09-14
  */
-public abstract class Character {
+public abstract class AbstractCharacter implements Playable{
     private int LVL;
     private int ATK;
     private int DEF;
@@ -17,6 +20,7 @@ public abstract class Character {
     private int HP;
     private int FPMax;
     private int FP;
+    private double K;
 
 
     /**
@@ -28,7 +32,7 @@ public abstract class Character {
      * @param HPMax Maximum HP
      * @param FPMax Maximum FP
      */
-    public Character(int LVL, int ATK, int DEF, int HPMax, int FPMax){
+    public AbstractCharacter(int LVL, int ATK, int DEF, int HPMax, int FPMax){
         super();
         this.LVL = LVL;
         this.ATK = ATK;
@@ -37,6 +41,7 @@ public abstract class Character {
         this.HP = HPMax;
         this.FPMax = FPMax;
         this.FP = FPMax;
+        this.K = 0.75;
     }
 
     /**
@@ -169,6 +174,14 @@ public abstract class Character {
     }
 
     /**
+     * Retrives the value of the K variable
+     */
+    public double getK(){
+        return K;
+    }
+
+
+    /**
      * Checks if the current HP of a character is 0 (and, thus, if it's out of combat or not).
      * @return true if KO and false if not
      */
@@ -176,5 +189,40 @@ public abstract class Character {
         return this.getHP() == 0;
     }
 
+    /**
+     * Calculates the damage dealt by a character, if the attacker is KO, this damage is 0.
+     * @param K constant relative to a character and attack type
+     * @param attacker character that performs this action
+     * @param defender character that receives this action
+     */
+    public int damage(double K, Playable attacker, Playable defender){
+        int dmg = 0;
+        if (!attacker.isKO()) dmg = (int) Math.floor(K*attacker.getATK()*attacker.getLVL()/defender.getDEF());
+        return -dmg;
+    }
+
+    /**
+     * Automatic implementation of equals to test the construction of objects.
+     *
+     * @param o object to compare to
+     * @return true if both objects are the same.
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AbstractCharacter that = (AbstractCharacter) o;
+        return LVL == that.LVL && ATK == that.ATK && DEF == that.DEF && HPMax == that.HPMax && HP == that.HP && FPMax == that.FPMax && FP == that.FP && K == that.K;
+    }
+
+    /**
+     * Automatic implementation of hashCode to find a unique object.
+     *
+     * @return returns an int that identifies the object.
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(LVL, ATK, DEF, HPMax, HP, FPMax, FP, K);
+    }
 
 }
