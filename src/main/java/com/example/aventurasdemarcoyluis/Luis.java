@@ -7,7 +7,7 @@ package com.example.aventurasdemarcoyluis;
  * @version 1.0
  * @since 2021-09-23
  */
-public class Luis extends AbstractPlayers implements Heroic {
+public class Luis extends AbstractPlayers implements Heroic, AttackableByBoo {
     public Luis(int LVL, int ATK, int DEF, int HPMax, int FPMax){
         super(LVL, ATK, DEF, HPMax, FPMax);
     }
@@ -17,7 +17,7 @@ public class Luis extends AbstractPlayers implements Heroic {
      *
      * @param enemy the target of the Jump attack.
      */
-    public void jump(Wicked enemy){
+    public void jump(AttackableByLuis enemy){
         this.addFP(-1);
         enemy.defendFromLuisJump(this);
     }
@@ -27,7 +27,7 @@ public class Luis extends AbstractPlayers implements Heroic {
      *
      * @param enemy the target of the Hammer attack.
      */
-    public void hammer(Wicked enemy){
+    public void hammer(AttackableByLuis enemy){
         this.addFP(-2);
         enemy.defendFromLuisHammer(this);
     }
