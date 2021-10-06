@@ -10,7 +10,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * @version 1.0
  * @since 2021-09-14
  */
-public class Spiny extends AbstractEnemies implements Wicked {
+public class Spiny extends AbstractEnemies implements Wicked, AttackableByLuis {
     public Spiny(int LVL, int ATK, int DEF, int HPMax, int FPMax){
         super(LVL, ATK, DEF, HPMax, FPMax);
     }

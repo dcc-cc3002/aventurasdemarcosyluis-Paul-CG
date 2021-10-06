@@ -1,7 +1,5 @@
 package com.example.aventurasdemarcoyluis;
 
-import java.util.concurrent.ThreadLocalRandom;
-
 /**
  * Creates template with shared data of all types of characters in the game
  *
@@ -18,7 +16,7 @@ public class Boo extends AbstractEnemies implements Wicked {
      * Simple attack on a player.
      * @param player the target of the attack.
      */
-    public void attack(Heroic player) {
+    public void attack(AttackableByBoo player) {
         player.defendFromBoo(this);
     }
 
@@ -40,21 +38,4 @@ public class Boo extends AbstractEnemies implements Wicked {
         this.addHP(dmg);
     }
 
-    /**
-     *  Receives a Jump from Luis, no damage is dealt.
-     * @param player is the original attacker.
-     */
-    public void defendFromLuisJump(Playable player) {
-        int dmg = 0;
-        this.addHP(dmg);
-    }
-
-    /**
-     *  Receives a Hammer from Luis, no damage is dealt.
-     * @param player is the original attacker.
-     */
-    public void defendFromLuisHammer(Playable player) {
-        int dmg = 0;
-        this.addHP(dmg);
-    }
 }

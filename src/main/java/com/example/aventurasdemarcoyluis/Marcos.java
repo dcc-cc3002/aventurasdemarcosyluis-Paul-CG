@@ -51,14 +51,4 @@ public class Marcos extends AbstractPlayers implements Heroic {
         int dmg = this.damage(enemy.getK(),enemy, this);
         this.addHP(dmg);
     }
-
-    /**
-     * Response to an incoming attack from Boo, notice that Boo can't attack Marcos.
-     *
-     * @param enemy that is attacking the player
-     */
-    public void defendFromBoo(Playable enemy){
-        int dmg = 0;
-        this.addHP(dmg);
-    }
 }

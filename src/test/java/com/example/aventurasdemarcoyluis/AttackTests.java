@@ -3,6 +3,7 @@ package com.example.aventurasdemarcoyluis;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.lang.Math;
+import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -23,6 +24,9 @@ public class AttackTests {
         testSpiny = new Spiny(2, 10, 8, 50, 10);
         testGoomba= new Goomba(2, 10, 8, 50, 10);
         testBoo = new Boo(2, 10, 8, 50, 10);
+
+        Random numeroRandom = new Random();
+        numeroRandom.setSeed(3);
     }
 
     @Test
@@ -75,15 +79,10 @@ public class AttackTests {
         assertNotEquals(testSpiny.getHPMax(),testSpiny.getHP());
 
         /**
-         * Check that Luis doesn't damage Boo
+         * Check that Luis can't damage Boo (commented)
          */
-        testLuis.jump(testBoo);
-        assertEquals(testBoo.getHPMax(),testBoo.getHP());
-        testLuis.hammer(testBoo);
-        testLuis.hammer(testBoo);
-        testLuis.hammer(testBoo);
-        testLuis.hammer(testBoo);
-        assertEquals(testBoo.getHPMax(),testBoo.getHP());
+        /** testLuis.jump(testBoo);
+        testLuis.hammer(testBoo);*/
 
     }
 
@@ -158,8 +157,10 @@ public class AttackTests {
 
     @Test
     public void booAttackTest(){
-        testBoo.attack(testMarcos);
-        assertEquals(testMarcos.getHPMax(),testMarcos.getHP());
+        /**
+         * Check that Boo can't attack Marcos (commented)
+         */
+        /** testBoo.attack(testMarcos); */
 
         testBoo.attack(testLuis);
         assertNotEquals(testLuis.getHPMax(),testLuis.getHP());
