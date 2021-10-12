@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ItemsTests {
 
     private Marcos testMarcos;
+    private Chest testChest;
 
     private Star testStar;
     private RedMushroom testRedMushroom;
@@ -17,6 +18,7 @@ public class ItemsTests {
     @BeforeEach
     public void setUp() {
         testMarcos = new Marcos(2, 10, 8, 50, 10);
+        testChest = new Chest();
 
         testStar = new Star();
         testRedMushroom = new RedMushroom();
@@ -25,66 +27,66 @@ public class ItemsTests {
 
     @Test
     public void hasItemTest(){
-        assertFalse(testMarcos.hasItem(testStar));
-        assertFalse(testMarcos.hasItem(testRedMushroom));
-        assertFalse(testMarcos.hasItem(testHoneySyrup));
+        assertFalse(testChest.hasItem(testStar));
+        assertFalse(testChest.hasItem(testRedMushroom));
+        assertFalse(testChest.hasItem(testHoneySyrup));
     }
 
     @Test
     public void addItemTest(){
-        testMarcos.addItem(testStar);
-        testMarcos.addItem(testRedMushroom);
-        testMarcos.addItem(testHoneySyrup);
-        assertTrue(testMarcos.hasItem(testStar));
-        assertTrue(testMarcos.hasItem(testRedMushroom));
-        assertTrue(testMarcos.hasItem(testHoneySyrup));
+        testChest.addItem(testStar);
+        testChest.addItem(testRedMushroom);
+        testChest.addItem(testHoneySyrup);
+        assertTrue(testChest.hasItem(testStar));
+        assertTrue(testChest.hasItem(testRedMushroom));
+        assertTrue(testChest.hasItem(testHoneySyrup));
     }
 
     @Test
-    public void addmanyItemsTest(){
-        testMarcos.addItem(testStar);
-        testMarcos.addItem(testStar);
-        testMarcos.useItem(testStar);
-        assertTrue(testMarcos.hasItem(testStar));
-        testMarcos.useItem(testStar);
-        assertFalse(testMarcos.hasItem(testStar));
+    public void addManyItemsTest(){
+        testChest.addItem(testStar);
+        testChest.addItem(testStar);
+        testChest.useItem(testMarcos, testStar);
+        assertTrue(testChest.hasItem(testStar));
+        testChest.useItem(testMarcos, testStar);
+        assertFalse(testChest.hasItem(testStar));
     }
 
 
     @Test
     public void removeItemTest(){
-        testMarcos.addItem(testStar);
-        assertTrue(testMarcos.hasItem(testStar));
-        testMarcos.removeItem(testStar);
-        assertFalse(testMarcos.hasItem(testStar));
+        testChest.addItem(testStar);
+        assertTrue(testChest.hasItem(testStar));
+        testChest.removeItem(testStar);
+        assertFalse(testChest.hasItem(testStar));
     }
 
     @Test
     public void useItemTest(){
-        testMarcos.addItem(testStar);
-        testMarcos.addItem(testRedMushroom);
-        testMarcos.addItem(testHoneySyrup);
-        testMarcos.useItem(testStar);
-        testMarcos.useItem(testRedMushroom);
-        testMarcos.useItem(testHoneySyrup);
-        assertFalse(testMarcos.hasItem(testStar));
-        assertFalse(testMarcos.hasItem(testRedMushroom));
-        assertFalse(testMarcos.hasItem(testHoneySyrup));
+        testChest.addItem(testStar);
+        testChest.addItem(testRedMushroom);
+        testChest.addItem(testHoneySyrup);
+        testChest.useItem(testMarcos, testStar);
+        testChest.useItem(testMarcos, testRedMushroom);
+        testChest.useItem(testMarcos, testHoneySyrup);
+        assertFalse(testChest.hasItem(testStar));
+        assertFalse(testChest.hasItem(testRedMushroom));
+        assertFalse(testChest.hasItem(testHoneySyrup));
     }
 
     @Test
     public void effectRedMushRoomTest(){
         testMarcos.setHP((int) (testMarcos.getHPMax()*0.9));
-        testMarcos.addItem(testRedMushroom);
-        testMarcos.useItem(testRedMushroom);
+        testChest.addItem(testRedMushroom);
+        testChest.useItem(testMarcos, testRedMushroom);
         assertEquals(testMarcos.getHPMax(),testMarcos.getHP());
     }
 
     @Test
     public void effectHoneySyrupTest(){
         testMarcos.setFP(0);
-        testMarcos.addItem(testHoneySyrup);
-        testMarcos.useItem(testHoneySyrup);
+        testChest.addItem(testHoneySyrup);
+        testChest.useItem(testMarcos, testHoneySyrup);
         assertEquals(3,testMarcos.getFP());
     }
 
