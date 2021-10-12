@@ -15,6 +15,7 @@ public abstract class AbstractPlayers extends AbstractCharacter {
     private HashMap<Consumable,Integer> inventory;
     private double KJump;
     private double KHammer;
+    private double lvlUpFactor;
 
     /**
      * Constructor of the class, it defines two types of K (hammer and jump)
@@ -28,6 +29,7 @@ public abstract class AbstractPlayers extends AbstractCharacter {
         inventory = new HashMap<Consumable, Integer>();
         KHammer = 1.5;
         KJump = 1;
+        lvlUpFactor = 1.15;
     }
 
     /**
@@ -68,6 +70,23 @@ public abstract class AbstractPlayers extends AbstractCharacter {
             item.activate(this);
             this.removeItem(item);
         }
+    }
+
+    /**
+     * lvlUP increments the stats HPMax, FPMax, ATK and DEF by 15%, LVL by 1. HP and FP are incremented by the same
+     * amount HPMax and FPMax respectively.
+     */
+    public void lvlUp(){
+        int HP = (int) ((lvlUpFactor-1)*this.getHPMax());
+        int FP = (int) ((lvlUpFactor-1)*this.getFPMax());
+
+        this.setLVL(this.getLVL()+1);
+        this.setHPMax(this.getHPMax() + HP);
+        this.setFPMax(this.getFPMax() + FP);
+        this.setHP(this.getHP() + HP);
+        this.setFP(this.getFP() + FP);
+        this.setATK((int) (lvlUpFactor*this.getATK()));
+        this.setDEF((int) (lvlUpFactor*this.getDEF()));
     }
 
     @Override

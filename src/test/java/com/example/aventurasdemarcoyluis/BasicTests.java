@@ -130,4 +130,23 @@ public class BasicTests {
         assertEquals(1.5,testMarcos.getKHammer());
     }
 
+    @Test
+    public void lvlUpTest(){
+
+        double factorLvlUp = 1.15;
+        int LVL = testMarcos.getLVL();
+        int HPMax = testMarcos.getHPMax();
+        int FPMax = testMarcos.getFPMax();
+        int ATK = testMarcos.getATK();
+        int DEF = testMarcos.getDEF();
+
+        testMarcos.lvlUp();
+
+        assertEquals(LVL+1, testMarcos.getLVL());
+        assertEquals((int) (HPMax*factorLvlUp), testMarcos.getHPMax());
+        assertEquals((int) (FPMax*factorLvlUp), testMarcos.getFPMax());
+        assertEquals((int) (ATK*factorLvlUp), testMarcos.getATK());
+        assertEquals((int) (DEF*factorLvlUp), testMarcos.getDEF());
+    }
+
 }
