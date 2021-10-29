@@ -11,7 +11,6 @@ public class ItemsTests {
     private Marcos testMarcos;
     private Chest testChest;
 
-    private Star testStar;
     private RedMushroom testRedMushroom;
     private HoneySyrup testHoneySyrup;
 
@@ -20,56 +19,49 @@ public class ItemsTests {
         testMarcos = new Marcos(2, 10, 8, 50, 10);
         testChest = new Chest();
 
-        testStar = new Star();
         testRedMushroom = new RedMushroom();
         testHoneySyrup = new HoneySyrup();
     }
 
     @Test
     public void hasItemTest(){
-        assertFalse(testChest.hasItem(testStar));
         assertFalse(testChest.hasItem(testRedMushroom));
         assertFalse(testChest.hasItem(testHoneySyrup));
     }
 
     @Test
     public void addItemTest(){
-        testChest.addItem(testStar);
         testChest.addItem(testRedMushroom);
         testChest.addItem(testHoneySyrup);
-        assertTrue(testChest.hasItem(testStar));
         assertTrue(testChest.hasItem(testRedMushroom));
         assertTrue(testChest.hasItem(testHoneySyrup));
     }
 
     @Test
     public void addManyItemsTest(){
-        testChest.addItem(testStar);
-        testChest.addItem(testStar);
-        testChest.useItem(testMarcos, testStar);
-        assertTrue(testChest.hasItem(testStar));
-        testChest.useItem(testMarcos, testStar);
-        assertFalse(testChest.hasItem(testStar));
+        testChest.addItem(testRedMushroom);
+        testChest.addItem(testRedMushroom);
+        testChest.useItem(testMarcos, testRedMushroom);
+        assertTrue(testChest.hasItem(testRedMushroom));
+        testChest.useItem(testMarcos, testRedMushroom);
+        assertFalse(testChest.hasItem(testRedMushroom));
     }
 
 
     @Test
     public void removeItemTest(){
-        testChest.addItem(testStar);
-        assertTrue(testChest.hasItem(testStar));
-        testChest.removeItem(testStar);
-        assertFalse(testChest.hasItem(testStar));
+        testChest.addItem(testRedMushroom);
+        assertTrue(testChest.hasItem(testRedMushroom));
+        testChest.removeItem(testRedMushroom);
+        assertFalse(testChest.hasItem(testRedMushroom));
     }
 
     @Test
     public void useItemTest(){
-        testChest.addItem(testStar);
         testChest.addItem(testRedMushroom);
         testChest.addItem(testHoneySyrup);
-        testChest.useItem(testMarcos, testStar);
         testChest.useItem(testMarcos, testRedMushroom);
         testChest.useItem(testMarcos, testHoneySyrup);
-        assertFalse(testChest.hasItem(testStar));
         assertFalse(testChest.hasItem(testRedMushroom));
         assertFalse(testChest.hasItem(testHoneySyrup));
     }
