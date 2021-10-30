@@ -1,4 +1,4 @@
-package com.example.aventurasdemarcoyluis;
+package AventurasdeMarcosyLuis.Items;
 
 /**
  * Creates template with shared data of all types of characters in the game

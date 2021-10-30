@@ -1,5 +1,10 @@
-package com.example.aventurasdemarcoyluis;
+package AventurasdeMarcosyLuis;
 
+import AventurasdeMarcosyLuis.Characters.Heroes.Luis;
+import AventurasdeMarcosyLuis.Characters.Heroes.Marcos;
+import AventurasdeMarcosyLuis.Characters.Wicked.Boo;
+import AventurasdeMarcosyLuis.Characters.Wicked.Goomba;
+import AventurasdeMarcosyLuis.Characters.Wicked.Spiny;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

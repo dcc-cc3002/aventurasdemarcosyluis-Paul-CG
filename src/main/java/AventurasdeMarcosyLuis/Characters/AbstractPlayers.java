@@ -1,10 +1,8 @@
-package com.example.aventurasdemarcoyluis;
-
-import java.util.HashMap;
+package AventurasdeMarcosyLuis.Characters;
 
 /**
  * Players Extends Character, it represents the main characters of the game.
- * This class implements all the methods to use Items, which corresponds only
+ * This class implements all the methods to use AventurasdeMarcosyLuis.AventurasdeMarcosyLuis.AventurasdeMarcosyLuis.Items.Items.Characters.AventurasdeMarcosyLuis.Items.Items, which corresponds only
  * to the main characters.
  *
  * @author Paul Chauveau Gerber

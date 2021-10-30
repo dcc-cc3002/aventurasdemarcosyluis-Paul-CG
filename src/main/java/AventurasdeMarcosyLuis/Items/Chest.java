@@ -1,9 +1,11 @@
-package com.example.aventurasdemarcoyluis;
+package AventurasdeMarcosyLuis.Items;
+
+import AventurasdeMarcosyLuis.Characters.Playable;
 
 import java.util.HashMap;
 
 /**
- * Class Chest that stores all the Items that the Players share.
+ * Class Chest that stores all the AventurasdeMarcosyLuis.AventurasdeMarcosyLuis.AventurasdeMarcosyLuis.Items.Items.Characters.AventurasdeMarcosyLuis.Items.Items that the Players share.
  *
  *  @author Paul Chauveau Gerber
  *  @version 1.0

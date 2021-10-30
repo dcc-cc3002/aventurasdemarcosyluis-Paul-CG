@@ -1,4 +1,8 @@
-package com.example.aventurasdemarcoyluis;
+package AventurasdeMarcosyLuis.Characters.Heroes;
+
+import AventurasdeMarcosyLuis.Characters.AbstractPlayers;
+import AventurasdeMarcosyLuis.Characters.Wicked.AttackableByLuis;
+import AventurasdeMarcosyLuis.Characters.Playable;
 
 /**
  * Creates a Luis Character, extended from PLayers

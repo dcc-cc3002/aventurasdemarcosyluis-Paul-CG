@@ -1,4 +1,6 @@
-package com.example.aventurasdemarcoyluis;
+package AventurasdeMarcosyLuis.Characters.Wicked;
+
+import AventurasdeMarcosyLuis.Characters.Playable;
 
 public interface AttackableByLuis {
     default void defendFromLuisJump(Playable player){}

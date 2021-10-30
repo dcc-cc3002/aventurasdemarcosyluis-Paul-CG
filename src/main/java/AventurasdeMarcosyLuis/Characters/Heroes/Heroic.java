@@ -1,7 +1,9 @@
-package com.example.aventurasdemarcoyluis;
+package AventurasdeMarcosyLuis.Characters.Heroes;
+
+import AventurasdeMarcosyLuis.Characters.Playable;
 
 /**
- * Implements the attacks and defense of all Heroes (or Players).
+ * Implements the attacks and defense of all AventurasdeMarcosyLuis.AventurasdeMarcosyLuis.AventurasdeMarcosyLuis.Items.Items.Characters.AventurasdeMarcosyLuis.AventurasdeMarcosyLuis.AventurasdeMarcosyLuis.Items.Items.Characters.Heroes.Heroes (or Players).
  *
  * @author Paul Chauveau Gerber
  * @version 1.0

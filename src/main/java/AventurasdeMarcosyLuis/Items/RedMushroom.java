@@ -1,4 +1,6 @@
-package com.example.aventurasdemarcoyluis;
+package AventurasdeMarcosyLuis.Items;
+
+import AventurasdeMarcosyLuis.Characters.Playable;
 
 /**
  * Creates a RedMushroom Item, it adds 10% of HPMax to the character's HP.

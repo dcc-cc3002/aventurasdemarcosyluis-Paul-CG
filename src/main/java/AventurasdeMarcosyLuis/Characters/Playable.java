@@ -1,8 +1,8 @@
-package com.example.aventurasdemarcoyluis;
+package AventurasdeMarcosyLuis.Characters;
 
 
 /**
- * This Playable interface shares all basics methods that all Characters need.
+ * This Playable interface shares all basics methods that all AventurasdeMarcosyLuis.AventurasdeMarcosyLuis.AventurasdeMarcosyLuis.Items.Items.Characters need.
  */
 public interface Playable {
 

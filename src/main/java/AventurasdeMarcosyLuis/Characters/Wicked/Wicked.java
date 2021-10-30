@@ -1,4 +1,6 @@
-package com.example.aventurasdemarcoyluis;
+package AventurasdeMarcosyLuis.Characters.Wicked;
+
+import AventurasdeMarcosyLuis.Characters.Playable;
 
 /**
  * Implements the attacks and defense of all Villains (or Enemies).

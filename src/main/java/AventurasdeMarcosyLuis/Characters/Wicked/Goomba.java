@@ -1,4 +1,7 @@
-package com.example.aventurasdemarcoyluis;
+package AventurasdeMarcosyLuis.Characters.Wicked;
+
+import AventurasdeMarcosyLuis.Characters.Heroes.Heroic;
+import AventurasdeMarcosyLuis.Characters.Playable;
 
 import java.util.concurrent.ThreadLocalRandom;
 

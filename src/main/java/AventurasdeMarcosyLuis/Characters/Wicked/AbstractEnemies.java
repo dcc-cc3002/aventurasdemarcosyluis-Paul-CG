@@ -1,4 +1,6 @@
-package com.example.aventurasdemarcoyluis;
+package AventurasdeMarcosyLuis.Characters.Wicked;
+
+import AventurasdeMarcosyLuis.Characters.AbstractCharacter;
 
 /**
  * Creates an abstract Enemy, it fixes the K value for all enemies
@@ -7,7 +9,7 @@ package com.example.aventurasdemarcoyluis;
  * @version 1.0
  * @since 2021-09-14
  */
-public abstract class AbstractEnemies extends AbstractCharacter{
+public abstract class AbstractEnemies extends AbstractCharacter {
 
     /**
      * Creates a new Enemy
