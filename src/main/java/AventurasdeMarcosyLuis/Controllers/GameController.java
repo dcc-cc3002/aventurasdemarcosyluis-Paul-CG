@@ -60,8 +60,8 @@ public class GameController {
     /**
      * Takes players and enemies and creates a single list with all of them. It is used to keep track of the characters
      * during a stage.
-     * @param players
-     * @param enemies
+     * @param players list of main characters
+     * @param enemies list of enemies
      * @return list with all characters
      */
     public LinkedList<Playable> formCurrentCharactersList(LinkedList<Playable> players, LinkedList<Playable> enemies){
@@ -72,15 +72,15 @@ public class GameController {
 
     /**
      * Returns the list of current characters active in the stage.
-     * @return
+     * @return currentCharacters
      */
-    public LinkedList getCurrentCharacters(){
+    public LinkedList<Playable> getCurrentCharacters(){
         return currentCharacters;
     }
 
     /**
      * Removes the dead characters from the currentCharacters list
-     * @param currentCharacters
+     * @param currentCharacters list of active characters
      */
     public void removeDead(LinkedList<Playable> currentCharacters) {
         for (int i = 0; i < currentCharacters.size(); i++){
@@ -91,67 +91,61 @@ public class GameController {
 
     /**
      * Gets the current character that is active this step.
-     * @param currentCharacters
-     * @param turn
-     * @return
+     * @param currentCharacters list of current characters
+     * @param step indicates the number of actions since the beginning of a turn
+     * @return current character
      */
-    public Playable getCurrentCharacter(LinkedList<Playable> currentCharacters, int turn) {
-        int index = (turn - 1) % currentCharacters.size();
+    public Playable getCurrentCharacter(LinkedList<Playable> currentCharacters, int step) {
+        int index = (step - 1) % currentCharacters.size();
         return currentCharacters.get(index);
     }
 
     /**
      * Gets the next character that will be active next step.
-     * @param currentCharacters
-     * @param turn
-     * @return
+     * @param currentCharacters list of current characters
+     * @param step indicates the number of actions since the beginning of a turn
+     * @return next current character
      */
-    public Playable getNextCharacter(LinkedList<Playable> currentCharacters, int turn){
-        return getCurrentCharacter(currentCharacters, turn+1);
+    public Playable getNextCharacter(LinkedList<Playable> currentCharacters, int step){
+        return getCurrentCharacter(currentCharacters, step+1);
     }
 
     /**
      * Checks if the conditions for winning have been fulfilled.
-     * @param currentCharacters
-     * @return
+     * @param currentCharacters list of current characters
+     * @return true if the players won, false otherwise
      */
     public boolean didIWin(LinkedList<Playable> currentCharacters){
         if (currentCharacters.size() == 2 && (currentCharacters.contains(marcos) && currentCharacters.contains(luis))){
             return true;
-        } else if (currentCharacters.size() == 1 && (currentCharacters.contains(marcos) || currentCharacters.contains(luis))){
-            return true;
-        }
-        return false;
+        } else return currentCharacters.size() == 1 && (currentCharacters.contains(marcos) || currentCharacters.contains(luis));
     }
 
     /**
      * Checks if the conditions for losing have been fulfilled.
-     * @param currentCharacters
-     * @return
+     * @param currentCharacters list of current characters
+     * @return true if the players lose, false otherwise
      */
     public boolean didILose(LinkedList<Playable> currentCharacters){
-        if (!currentCharacters.contains(marcos) && !currentCharacters.contains(luis)){
-            return true;
-        }
-        return false;
+        return !currentCharacters.contains(marcos) && !currentCharacters.contains(luis);
     }
 
     /**
      * Applies the modifications (lvl up, healing and more items) at the end of each turn.
-     * @param players
+     * @param players list of active players
      */
     public void endTurn(LinkedList<Playable> players) {
-        for (int i = 0; i < players.size(); i++){
-            players.get(i).lvlUp();
-            players.get(i).setHP(players.get(i).getHPMax());
-            players.get(i).setFP(players.get(i).getFPMax());
+        for (Playable player : players) {
+            player.lvlUp();
+            player.setHP(player.getHPMax());
+            player.setFP(player.getFPMax());
         }
         stockChest(1);
     }
 
     /**
      * Adds the same amount of RedMushroom and HoneySyrup to the chest.
-     * @param amount
+     * @param amount of items to be restocked
      */
     public void stockChest(int amount) {
         for (int i = 0; i < amount; i++){
@@ -162,8 +156,8 @@ public class GameController {
 
     /**
      * Allows to use an item, if possible, from the chest.
-     * @param player
-     * @param item
+     * @param player that would use the item
+     * @param item to be used
      */
     public void useItem(Playable player, Consumable item) {
         chest.useItem(player, item);
@@ -171,7 +165,7 @@ public class GameController {
 
     /**
      * Gets all the items that are stored in the chest (names and amount).
-     * @return
+     * @return hashmap of the full chest
      */
     public HashMap getMapItems(){
         return chest.getItems();
@@ -179,7 +173,7 @@ public class GameController {
 
     /**
      * Gets the names of all items in the chest.
-     * @return
+     * @return list of items in the chest
      */
     public LinkedList getListItems(){
         HashMap map = getMapItems();
@@ -188,8 +182,8 @@ public class GameController {
 
     /**
      * Gets the amount left of an item on the chest.
-     * @param item
-     * @return
+     * @param item item to check how many are left
+     * @return amount of items left
      */
     public int getHowManyItems(Consumable item) {
         return chest.howManyItems(item);

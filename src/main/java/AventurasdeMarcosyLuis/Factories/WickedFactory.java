@@ -15,15 +15,15 @@ public class WickedFactory {
     private int ATK;
     private int DEF;
     private int HPMax;
-    private int FPMax;
+    private final int FPMax;
 
     /**
      * This is the constructor of the Factory. It receives the base parameters to create enemies, which can
      * be modified using the set methods.
-     * @param LVL
-     * @param ATK
-     * @param DEF
-     * @param HPMax
+     * @param LVL level of the enemies
+     * @param ATK attack of the enemies
+     * @param DEF defense of the enemies
+     * @param HPMax Max HP of the enemies
      */
     public WickedFactory(int LVL, int ATK, int DEF, int HPMax){
         this.LVL = LVL;
@@ -36,7 +36,7 @@ public class WickedFactory {
     /**
      * This set method changes the preset value of ATK to create enemies. It is used to manage the
      * difficulty of a given stage.
-     * @param ATK
+     * @param ATK attack
      */
     public void setATK(int ATK) {
         this.ATK = ATK;
@@ -45,7 +45,7 @@ public class WickedFactory {
     /**
      * This set method changes the preset value of DEF to create enemies. It is used to manage the
      * difficulty of a given stage.
-     * @param DEF
+     * @param DEF defense
      */
     public void setDEF(int DEF) {
         this.DEF = DEF;
@@ -54,7 +54,7 @@ public class WickedFactory {
     /**
      * This set method changes the preset value of HPMax to create enemies. It is used to manage the
      * difficulty of a given stage.
-     * @param HPMax
+     * @param HPMax Max HP
      */
     public void setHPMax(int HPMax) {
         this.HPMax = HPMax;
@@ -63,7 +63,7 @@ public class WickedFactory {
     /**
      * This set method changes the preset value of LVL to create enemies. It is used to manage the
      * difficulty of a given stage.
-     * @param LVL
+     * @param LVL level
      */
     public void setLVL(int LVL) {
         this.LVL = LVL;

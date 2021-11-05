@@ -68,10 +68,11 @@ public class Chest {
 
     /**
      * This method returns the quantity of items the chest has left of a certain type
-     * @param item
+     * @param item item to check
      * @return int representing the number of items left
      */
     public int howManyItems(Consumable item){
+        if (inventory.get(item) == null) return 0;
         return inventory.get(item);
     }
 }
