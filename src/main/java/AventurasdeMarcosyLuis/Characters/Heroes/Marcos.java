@@ -2,7 +2,7 @@ package AventurasdeMarcosyLuis.Characters.Heroes;
 
 import AventurasdeMarcosyLuis.Characters.AbstractPlayers;
 import AventurasdeMarcosyLuis.Characters.Playable;
-import AventurasdeMarcosyLuis.Characters.Wicked.Wicked;
+import AventurasdeMarcosyLuis.Characters.Enemies.Wicked;
 
 /**
  * Creates a Marcos Character, extended from Players

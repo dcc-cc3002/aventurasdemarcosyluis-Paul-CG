@@ -7,10 +7,10 @@ in the context of the course "CC3002 - Metodologías de Diseño y Programación"
 
 ## Version 0.2
 
-### AventurasdeMarcosyLuis.AventurasdeMarcosyLuis.AventurasdeMarcosyLuis.Items.Items.Characters
+### Characters
 Marcos, Luis, Goomba, Spiny and Boo have been implemented.
 
-### AventurasdeMarcosyLuis.AventurasdeMarcosyLuis.AventurasdeMarcosyLuis.Items.Items.Characters.AventurasdeMarcosyLuis.Items.Items
+### Items
 Honey Syrup, Red Mushroom and Star have been implemented.
 
 All items are usable only by Marcos or Luis.

@@ -21,6 +21,7 @@ public abstract class AbstractCharacter implements Playable{
     private int FPMax;
     private int FP;
     private double K;
+    private double lvlUpFactor;
 
 
     /**
@@ -42,6 +43,7 @@ public abstract class AbstractCharacter implements Playable{
         this.FPMax = FPMax;
         this.FP = FPMax;
         this.K = 0.75;
+        lvlUpFactor = 1.15;
     }
 
     /**
@@ -199,6 +201,23 @@ public abstract class AbstractCharacter implements Playable{
         int dmg = 0;
         if (!attacker.isKO()) dmg = (int) Math.floor(K*attacker.getATK()*attacker.getLVL()/defender.getDEF());
         return -dmg;
+    }
+
+    /**
+     * lvlUP increments the stats HPMax, FPMax, ATK and DEF by 15%, LVL by 1. HP and FP are incremented by the same
+     * amount HPMax and FPMax respectively.
+     */
+    public void lvlUp(){
+        int HP = (int) ((lvlUpFactor-1)*this.getHPMax());
+        int FP = (int) ((lvlUpFactor-1)*this.getFPMax());
+
+        this.setLVL(this.getLVL()+1);
+        this.setHPMax(this.getHPMax() + HP);
+        this.setFPMax(this.getFPMax() + FP);
+        this.setHP(this.getHP() + HP);
+        this.setFP(this.getFP() + FP);
+        this.setATK((int) (lvlUpFactor*this.getATK()));
+        this.setDEF((int) (lvlUpFactor*this.getDEF()));
     }
 
     /**

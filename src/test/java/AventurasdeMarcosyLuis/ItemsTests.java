@@ -2,10 +2,12 @@ package AventurasdeMarcosyLuis;
 
 import AventurasdeMarcosyLuis.Items.Chest;
 import AventurasdeMarcosyLuis.Items.RedMushroom;
-import AventurasdeMarcosyLuis.Characters.Heroes.Marcos;
 import AventurasdeMarcosyLuis.Items.HoneySyrup;
+import AventurasdeMarcosyLuis.Characters.Heroes.Marcos;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,15 +16,14 @@ public class ItemsTests {
 
     private Marcos testMarcos;
     private Chest testChest;
-
     private RedMushroom testRedMushroom;
     private HoneySyrup testHoneySyrup;
+    private HashMap chest;
 
     @BeforeEach
     public void setUp() {
         testMarcos = new Marcos(2, 10, 8, 50, 10);
         testChest = new Chest();
-
         testRedMushroom = new RedMushroom();
         testHoneySyrup = new HoneySyrup();
     }
@@ -39,6 +40,15 @@ public class ItemsTests {
         testChest.addItem(testHoneySyrup);
         assertTrue(testChest.hasItem(testRedMushroom));
         assertTrue(testChest.hasItem(testHoneySyrup));
+    }
+
+    @Test
+    public void getItemsTest(){
+        testChest.addItem(testRedMushroom);
+        testChest.addItem(testHoneySyrup);
+        chest = testChest.getItems();
+        assertEquals(1,chest.get(testRedMushroom));
+        assertEquals(1,chest.get(testHoneySyrup));
     }
 
     @Test
@@ -68,6 +78,13 @@ public class ItemsTests {
         testChest.useItem(testMarcos, testHoneySyrup);
         assertFalse(testChest.hasItem(testRedMushroom));
         assertFalse(testChest.hasItem(testHoneySyrup));
+    }
+
+    @Test
+    public void howManyItemsTest(){
+        testChest.addItem(testRedMushroom);
+        testChest.addItem(testRedMushroom);
+        assertEquals(2,testChest.howManyItems(testRedMushroom));
     }
 
     @Test

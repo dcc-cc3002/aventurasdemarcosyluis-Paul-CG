@@ -2,7 +2,7 @@ package AventurasdeMarcosyLuis.Characters;
 
 
 /**
- * This Playable interface shares all basics methods that all AventurasdeMarcosyLuis.AventurasdeMarcosyLuis.AventurasdeMarcosyLuis.Items.Items.Characters need.
+ * This Playable interface shares all basics methods that all Characters need.
  */
 public interface Playable {
 
@@ -137,4 +137,10 @@ public interface Playable {
     default boolean isKO(){
         return false;
     }
+
+    /**
+     * lvlUP increments the stats HPMax, FPMax, ATK and DEF by 15%, LVL by 1. HP and FP are incremented by the same
+     * amount HPMax and FPMax respectively.
+     */
+    default void lvlUp(){    }
 }

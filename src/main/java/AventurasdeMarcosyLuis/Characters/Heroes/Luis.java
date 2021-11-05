@@ -1,11 +1,11 @@
 package AventurasdeMarcosyLuis.Characters.Heroes;
 
 import AventurasdeMarcosyLuis.Characters.AbstractPlayers;
-import AventurasdeMarcosyLuis.Characters.Wicked.AttackableByLuis;
+import AventurasdeMarcosyLuis.Characters.Enemies.AttackableByLuis;
 import AventurasdeMarcosyLuis.Characters.Playable;
 
 /**
- * Creates a Luis Character, extended from PLayers
+ * Creates a Luis Character, extended from Players
  *
  * @author Paul Chauveau Gerber
  * @version 1.0

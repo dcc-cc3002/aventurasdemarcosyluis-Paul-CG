@@ -2,9 +2,9 @@ package AventurasdeMarcosyLuis;
 
 import AventurasdeMarcosyLuis.Characters.Heroes.Luis;
 import AventurasdeMarcosyLuis.Characters.Heroes.Marcos;
-import AventurasdeMarcosyLuis.Characters.Wicked.Boo;
-import AventurasdeMarcosyLuis.Characters.Wicked.Goomba;
-import AventurasdeMarcosyLuis.Characters.Wicked.Spiny;
+import AventurasdeMarcosyLuis.Characters.Enemies.Boo;
+import AventurasdeMarcosyLuis.Characters.Enemies.Goomba;
+import AventurasdeMarcosyLuis.Characters.Enemies.Spiny;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package AventurasdeMarcosyLuis.Characters.Wicked;
+package AventurasdeMarcosyLuis.Characters.Enemies;
 
 import AventurasdeMarcosyLuis.Characters.Playable;
 
@@ -12,7 +12,7 @@ import AventurasdeMarcosyLuis.Characters.Playable;
 public interface Wicked {
 
     /**
-     * This methods allows an enemy to react to an attack. There is one for each attack and player type.
+     * These methods allow an enemy to react to an attack. There is one for each attack and player type.
      *
      * @param player is the original attacker.
      */

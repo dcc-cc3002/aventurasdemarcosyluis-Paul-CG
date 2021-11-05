@@ -5,22 +5,29 @@ import AventurasdeMarcosyLuis.Characters.Playable;
 import java.util.HashMap;
 
 /**
- * Class Chest that stores all the AventurasdeMarcosyLuis.AventurasdeMarcosyLuis.AventurasdeMarcosyLuis.Items.Items.Characters.AventurasdeMarcosyLuis.Items.Items that the Players share.
+ * Class Chest that stores all the Items that the Players share.
  *
  *  @author Paul Chauveau Gerber
  *  @version 1.0
  *  @since 2021-10-12
  */
 public class Chest {
-    private HashMap<Consumable,Integer> inventory;
+    private final HashMap<Consumable,Integer> inventory;
 
     public Chest(){
         inventory = new HashMap<Consumable, Integer>();
     }
 
     /**
+     * Returns the full inventory.
+     * @return inventory
+     */
+    public HashMap getItems(){
+        return inventory;
+    }
+
+    /**
      * Adds one unit of an Item (param) to the Chest.
-     *
      * @param item Object of the class Item
      */
     public void addItem(Consumable item){
@@ -59,5 +66,12 @@ public class Chest {
         }
     }
 
-
+    /**
+     * This method returns the quantity of items the chest has left of a certain type
+     * @param item
+     * @return int representing the number of items left
+     */
+    public int howManyItems(Consumable item){
+        return inventory.get(item);
+    }
 }

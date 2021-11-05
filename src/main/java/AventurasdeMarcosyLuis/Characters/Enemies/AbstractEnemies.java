@@ -1,4 +1,4 @@
-package AventurasdeMarcosyLuis.Characters.Wicked;
+package AventurasdeMarcosyLuis.Characters.Enemies;
 
 import AventurasdeMarcosyLuis.Characters.AbstractCharacter;
 
