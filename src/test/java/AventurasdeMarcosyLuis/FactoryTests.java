@@ -12,6 +12,7 @@ public class FactoryTests {
 
     WickedFactory factory;
     Playable enemy;
+    Playable enemy2;
 
     @BeforeEach
     public void setUp(){
@@ -41,4 +42,5 @@ public class FactoryTests {
         assertEquals(100, enemy.getHPMax());
         assertEquals(10, enemy.getLVL());
     }
+
 }

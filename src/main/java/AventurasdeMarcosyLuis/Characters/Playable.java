@@ -143,4 +143,6 @@ public interface Playable {
      * amount HPMax and FPMax respectively.
      */
     default void lvlUp(){    }
+
+
 }

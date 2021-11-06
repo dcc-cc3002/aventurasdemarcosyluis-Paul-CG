@@ -1,5 +1,7 @@
 package AventurasdeMarcosyLuis;
 
+import AventurasdeMarcosyLuis.Characters.Enemies.Wicked;
+import AventurasdeMarcosyLuis.Characters.Heroes.Heroic;
 import AventurasdeMarcosyLuis.Characters.Playable;
 import AventurasdeMarcosyLuis.Controllers.GameController;
 import AventurasdeMarcosyLuis.Items.Consumable;
@@ -19,6 +21,7 @@ public class ControllerTests {
     private LinkedList listAux;
     private HashMap<Consumable, Integer> map;
     private Playable character;
+    private Playable enemy;
 
     @BeforeEach
     public void setUp(){
@@ -72,6 +75,23 @@ public class ControllerTests {
 
         assertFalse(listOfCharacters.contains(character));
         assertEquals(size-1, listOfCharacters.size());
+    }
+
+    @Test
+    public void playerAttackTest() {
+        listOfCharacters = controller.initializePlayers();
+        listAux = controller.initializeEnemies(4);
+        listOfCharacters = controller.formCurrentCharactersList(listOfCharacters, listAux);
+
+        character = listOfCharacters.get(0);
+        enemy = listOfCharacters.get(2);
+
+        controller.playerJumpAttacks((Heroic) character, (Wicked) enemy);
+        controller.playerHammerAttacks((Heroic) character, (Wicked) enemy);
+        controller.enemyAttack((Wicked) enemy, (Heroic) character);
+
+        assertNotEquals(enemy.getHPMax(),enemy.getHP());
+        assertNotEquals(character.getHPMax(),character.getHP());
     }
 
     @Test
@@ -151,13 +171,15 @@ public class ControllerTests {
         controller.stockChest(3);
         listOfCharacters = controller.initializePlayers();
         character = listOfCharacters.get(0);
+        character.setHP(45);
         listOfItems = controller.getListItems();
-        controller.useItem(character, listOfItems.get(0));
-        assertEquals(2, controller.getHowManyItems(listOfItems.get(0)));
+        controller.useItem(character, listOfItems.get(1));
+        assertEquals(50,character.getHP());
+        assertEquals(2, controller.getHowManyItems(listOfItems.get(1)));
     }
 
     @Test
-    public void endTurnTest() {
+    public void endBattleTest() {
         listOfCharacters = controller.initializePlayers();
         controller.stockChest(3);
         listOfItems = controller.getListItems();
@@ -169,7 +191,7 @@ public class ControllerTests {
         assertEquals(1,listOfCharacters.get(0).getLVL());
         assertEquals(1,listOfCharacters.get(1).getLVL());
 
-        controller.endTurn(listOfCharacters);
+        controller.endBattle(listOfCharacters);
 
         assertEquals(listOfCharacters.get(0).getHPMax(),listOfCharacters.get(0).getHP());
         assertEquals(listOfCharacters.get(1).getHPMax(),listOfCharacters.get(1).getHP());

@@ -11,6 +11,9 @@ import AventurasdeMarcosyLuis.Characters.Playable;
  */
 public class RedMushroom extends AbstractItems implements Consumable {
 
+    /**
+     * Constructor of the class RedMushroom
+     */
     public RedMushroom(){
         super();
     }

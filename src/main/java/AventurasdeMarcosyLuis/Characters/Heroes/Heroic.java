@@ -9,14 +9,28 @@ import AventurasdeMarcosyLuis.Characters.Playable;
  * @version 1.0
  * @since 2021-09-14
  */
-public interface Heroic {
+public interface Heroic<T> extends Playable {
 
     /**
-     * This method allows a character to react to an attack. There is one method for each enemy attack.
+     * Allows defending from an attack from Goomba
      * @param enemy is the original attacker.
      */
     default void defendFromGoomba(Playable enemy){}
 
+    /**
+     * Allows defending from an attack from Spiny
+     * @param enemy is the original attacker.
+     */
     default void defendFromSpiny(Playable enemy){}
+
+    /**
+     * Defines that all Heroes must have a jump attack
+     */
+    default void jump(T t){}
+
+    /**
+     * Defines that all Heroes must have a hammer attack
+     */
+    default void hammer(T t){}
 
 }

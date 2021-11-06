@@ -82,13 +82,6 @@ public class AttackTests {
         testLuis.hammer(testSpiny);
         testLuis.hammer(testSpiny);
         assertNotEquals(testSpiny.getHPMax(),testSpiny.getHP());
-
-        /**
-         * Check that Luis can't damage Boo (commented)
-         */
-        /** testLuis.jump(testBoo);
-        testLuis.hammer(testBoo);*/
-
     }
 
     @Test
@@ -175,10 +168,7 @@ public class AttackTests {
     @Test
     public void koCantAttackTest(){
         testMarcos.setHP(0);
-        int hp_init = testGoomba.getHP();
         testMarcos.jump(testGoomba);
-        int hp_final = testGoomba.getHP();
-
         assertEquals(testGoomba.getHP(),testGoomba.getHPMax());
     }
 

@@ -13,6 +13,14 @@ import java.util.concurrent.ThreadLocalRandom;
  * @since 2021-09-14
  */
 public class Goomba extends AbstractEnemies implements Wicked, AttackableByLuis {
+    /**
+     * Constructor of Goomba
+     * @param LVL level
+     * @param ATK attack
+     * @param DEF defense
+     * @param HPMax Max HP
+     * @param FPMax Max FP
+     */
     public Goomba(int LVL, int ATK, int DEF, int HPMax, int FPMax){
         super(LVL, ATK, DEF, HPMax, FPMax);
     }

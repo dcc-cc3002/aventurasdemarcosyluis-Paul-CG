@@ -14,6 +14,9 @@ import java.util.HashMap;
 public class Chest {
     private final HashMap<Consumable,Integer> inventory;
 
+    /**
+     * Construct of the class Chest, it initializes the HashMap
+     */
     public Chest(){
         inventory = new HashMap<Consumable, Integer>();
     }

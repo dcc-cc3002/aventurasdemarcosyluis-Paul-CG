@@ -8,7 +8,9 @@ package AventurasdeMarcosyLuis.Items;
  * @since 2021-09-22
  */
 public abstract class AbstractItems {
-
+    /**
+     * Constructor of the abstract class AbstractItems
+     */
     public AbstractItems(){}
 
 }

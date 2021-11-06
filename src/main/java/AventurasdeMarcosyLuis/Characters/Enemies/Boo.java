@@ -11,6 +11,14 @@ import AventurasdeMarcosyLuis.Characters.Playable;
  * @since 2021-09-14
  */
 public class Boo extends AbstractEnemies implements Wicked {
+    /**
+     * Constructor of Boo
+     * @param LVL level
+     * @param ATK attack
+     * @param DEF defense
+     * @param HPMax Max HP
+     * @param FPMax Max FP
+     */
     public Boo(int LVL, int ATK, int DEF, int HPMax, int FPMax){
         super(LVL, ATK, DEF, HPMax, FPMax);
     }

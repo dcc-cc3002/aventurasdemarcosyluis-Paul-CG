@@ -12,6 +12,14 @@ import AventurasdeMarcosyLuis.Characters.Enemies.Wicked;
  * @since 2021-09-23
  */
 public class Marcos extends AbstractPlayers implements Heroic {
+    /**
+     * Constructor of Marcos
+     * @param LVL level
+     * @param ATK attack
+     * @param DEF defense
+     * @param HPMax Max Hp
+     * @param FPMax Max FP
+     */
     public Marcos(int LVL, int ATK, int DEF, int HPMax, int FPMax){
         super(LVL, ATK, DEF, HPMax, FPMax);
     }

@@ -11,6 +11,9 @@ import AventurasdeMarcosyLuis.Characters.Playable;
  */
 public class HoneySyrup extends AbstractItems implements Consumable{
 
+    /**
+     * Constructor of the class HoneySyrup
+     */
     public HoneySyrup(){
         super();
     }

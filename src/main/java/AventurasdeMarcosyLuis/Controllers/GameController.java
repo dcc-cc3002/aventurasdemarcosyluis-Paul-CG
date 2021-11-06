@@ -1,5 +1,9 @@
 package AventurasdeMarcosyLuis.Controllers;
 
+import AventurasdeMarcosyLuis.Characters.Enemies.AttackableByLuis;
+import AventurasdeMarcosyLuis.Characters.Enemies.Goomba;
+import AventurasdeMarcosyLuis.Characters.Enemies.Wicked;
+import AventurasdeMarcosyLuis.Characters.Heroes.Heroic;
 import AventurasdeMarcosyLuis.Characters.Heroes.Luis;
 import AventurasdeMarcosyLuis.Characters.Heroes.Marcos;
 import AventurasdeMarcosyLuis.Characters.Playable;
@@ -83,31 +87,38 @@ public class GameController {
      * @param currentCharacters list of active characters
      */
     public void removeDead(LinkedList<Playable> currentCharacters) {
-        for (int i = 0; i < currentCharacters.size(); i++){
+        int list_length = currentCharacters.size();
+        int i = 0;
+        while (i < list_length){
             character = currentCharacters.get(i);
-            if (character.isKO()) currentCharacters.remove(character);
+            if (character.isKO()){
+                currentCharacters.remove(character);
+                i--;
+                list_length--;
+            }
+            i++;
         }
     }
 
     /**
      * Gets the current character that is active this step.
      * @param currentCharacters list of current characters
-     * @param step indicates the number of actions since the beginning of a turn
+     * @param turn indicates the number of actions since the beginning of a turn
      * @return current character
      */
-    public Playable getCurrentCharacter(LinkedList<Playable> currentCharacters, int step) {
-        int index = (step - 1) % currentCharacters.size();
+    public Playable getCurrentCharacter(LinkedList<Playable> currentCharacters, int turn) {
+        int index = (turn - 1) % currentCharacters.size();
         return currentCharacters.get(index);
     }
 
     /**
      * Gets the next character that will be active next step.
      * @param currentCharacters list of current characters
-     * @param step indicates the number of actions since the beginning of a turn
+     * @param turn indicates the number of actions since the beginning of a turn
      * @return next current character
      */
-    public Playable getNextCharacter(LinkedList<Playable> currentCharacters, int step){
-        return getCurrentCharacter(currentCharacters, step+1);
+    public Playable getNextCharacter(LinkedList<Playable> currentCharacters, int turn){
+        return getCurrentCharacter(currentCharacters, turn+1);
     }
 
     /**
@@ -134,7 +145,7 @@ public class GameController {
      * Applies the modifications (lvl up, healing and more items) at the end of each turn.
      * @param players list of active players
      */
-    public void endTurn(LinkedList<Playable> players) {
+    public void endBattle(LinkedList<Playable> players) {
         for (Playable player : players) {
             player.lvlUp();
             player.setHP(player.getHPMax());
@@ -187,6 +198,34 @@ public class GameController {
      */
     public int getHowManyItems(Consumable item) {
         return chest.howManyItems(item);
+    }
+
+   /** public void marcosJumpAttacks(Marcos attacker, Wicked defender) {
+            attacker.jump(defender);
+    }
+
+    public void marcosHammerAttacks(Marcos attacker, Wicked defender) {
+        attacker.hammer(defender);
+    }
+
+    public void luisJumpAttacks(Luis attacker, AttackableByLuis defender) {
+        attacker.jump(defender);
+    }
+
+    public void luisHammerAttacks(Luis attacker, AttackableByLuis defender) {
+        attacker.hammer(defender);
+    }*/
+
+   public void playerJumpAttacks(Heroic attacker, Wicked defender) {
+       attacker.jump(defender);
+   }
+
+    public void playerHammerAttacks(Heroic attacker, Wicked defender) {
+        attacker.hammer(defender);
+    }
+
+    public void enemyAttack(Wicked attacker, Heroic defender) {
+        attacker.attack(defender);
     }
 
 }
