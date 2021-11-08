@@ -3,6 +3,12 @@ module com.example.aventurasdemarcoyluis {
     requires javafx.fxml;
 
 
-    opens com.example.aventurasdemarcoyluis to javafx.fxml;
-    exports com.example.aventurasdemarcoyluis;
+    exports AventurasdeMarcosyLuis.Characters.Heroes;
+    opens AventurasdeMarcosyLuis.Characters.Heroes to javafx.fxml;
+    exports AventurasdeMarcosyLuis.Characters.Enemies;
+    opens AventurasdeMarcosyLuis.Characters.Enemies to javafx.fxml;
+    exports AventurasdeMarcosyLuis.Characters;
+    opens AventurasdeMarcosyLuis.Characters to javafx.fxml;
+    exports AventurasdeMarcosyLuis.Items;
+    opens AventurasdeMarcosyLuis.Items to javafx.fxml;
 }

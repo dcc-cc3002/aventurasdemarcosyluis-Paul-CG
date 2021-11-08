@@ -20,3 +20,29 @@ All items are usable only by Marcos or Luis.
 All attack methods are working fine, but there is no combat instance yet. Restrictions 
 have been applied, such as Luis unable to damage Boo. Players can only attack enemies
 and vice versa.
+
+## Version 0.6
+
+### Assumptions
+The order of turns is: Marcos, Luis and then the enemies.
+
+### Items
+Star has been removed.
+
+A new feature, Chest, has been added replacing the inventory. The Chest is shared by 
+Marcos and Luis.
+
+### Controller
+Following the MCV software architecture pattern, we added a controller to prepare the
+way to the visual interface. Named "GameController", it handles all the functionalities
+of the Model, decoupling the View.
+
+### Turn Testing
+We have implemented a "Mock-Turn" to test all functionalities. Please refer to it 
+at test->TurnTest.
+
+### Attack Testing
+When calling the playerAttackTest on ControllerTest battery tests, when a Boo character
+is created if Luis is attacking, an error will rise. This is by design. The idea is to
+catch that error on the last version and prompt a message to the player telling him
+that Luis is too afraid to attack Boo.
