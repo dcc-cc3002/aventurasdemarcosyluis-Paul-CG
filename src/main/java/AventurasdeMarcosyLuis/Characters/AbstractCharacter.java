@@ -20,9 +20,10 @@ public abstract class AbstractCharacter implements Playable{
     private int HP;
     private int FPMax;
     private int FP;
-    private double K;
-    private double lvlUpFactor;
-
+    private final double K;
+    private final double KJump;
+    private final double KHammer;
+    private final double lvlUpFactor;
 
     /**
      * Constructor of the class Character
@@ -43,6 +44,8 @@ public abstract class AbstractCharacter implements Playable{
         this.FPMax = FPMax;
         this.FP = FPMax;
         this.K = 0.75;
+        this.KHammer = 1.5;
+        this.KJump = 1;
         lvlUpFactor = 1.15;
     }
 
@@ -176,10 +179,20 @@ public abstract class AbstractCharacter implements Playable{
     }
 
     /**
-     * Retrives the value of the K variable
+     * Retrieves the value of the K variable
      */
     public double getK(){
         return K;
+    }
+
+    @Override
+    public double getKHammer(){
+        return KHammer;
+    }
+
+    @Override
+    public double getKJump(){
+        return KJump;
     }
 
 
@@ -199,7 +212,7 @@ public abstract class AbstractCharacter implements Playable{
      */
     public int damage(double K, Playable attacker, Playable defender){
         int dmg = 0;
-        if (!attacker.isKO()) dmg = (int) Math.floor(K*attacker.getATK()*attacker.getLVL()/defender.getDEF());
+        if (!attacker.isKO()) dmg = (int) Math.ceil(K*attacker.getATK()*attacker.getLVL()/defender.getDEF());
         return -dmg;
     }
 

@@ -34,10 +34,6 @@ public class Spiny extends AbstractEnemies implements AttackableByLuis {
         player.defendFromSpiny(this);
     }
 
-    @Override
-    public void genericAttack(Object o) {
-        attack((Heroic) o);
-    }
 
     /**
      *  Receives a Jump from Marcos, no damage is done and reflects damage back 5% of the player's HP.

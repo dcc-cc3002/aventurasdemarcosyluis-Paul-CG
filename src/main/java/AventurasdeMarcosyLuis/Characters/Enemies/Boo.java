@@ -24,18 +24,19 @@ public class Boo extends AbstractEnemies {
         super(LVL, ATK, DEF, HPMax, FPMax);
     }
 
+    @Override
+    public void attack(Heroic player){
+        this.attack((AttackableByBoo) player);
+    }
+
     /**
-     * Simple attack on a player.
+     * Simple attack on a player. This private version is to cast locally to AttackableByBoo.
      * @param player the target of the attack.
      */
-    public void attack(AttackableByBoo player) {
+    private void attack(AttackableByBoo player) {
         player.defendFromBoo(this);
     }
 
-    @Override
-    public void genericAttack(Object o) {
-        attack((AttackableByBoo) o);
-    }
 
     /**
      *  Receives a Jump from Marcos, damage is calculated normally.

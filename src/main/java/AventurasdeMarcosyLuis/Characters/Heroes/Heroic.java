@@ -1,15 +1,16 @@
 package AventurasdeMarcosyLuis.Characters.Heroes;
 
+import AventurasdeMarcosyLuis.Characters.Enemies.Wicked;
 import AventurasdeMarcosyLuis.Characters.Playable;
 
 /**
  * Implements the attacks and defense of all Heroes (or Players).
  *
  * @author Paul Chauveau Gerber
- * @version 1.0
- * @since 2021-09-14
+ * @version 1.3
+ * @since 2021-11-07
  */
-public interface Heroic<T> extends Playable {
+public interface Heroic extends Playable {
 
     /**
      * Allows defending from an attack from Goomba
@@ -25,12 +26,14 @@ public interface Heroic<T> extends Playable {
 
     /**
      * Defines that all Heroes must have a jump attack
+     * @param o objective of the attack
      */
-    void genericJump(T t);
+    void jump(Wicked o);
 
     /**
      * Defines that all Heroes must have a hammer attack
+     * @param o objective of the attack
      */
-    void genericHammer(T t);
+    void hammer(Wicked o);
 
 }

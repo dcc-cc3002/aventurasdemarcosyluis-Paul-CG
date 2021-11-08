@@ -33,10 +33,6 @@ public class Goomba extends AbstractEnemies implements AttackableByLuis {
         player.defendFromGoomba(this);
     }
 
-    @Override
-    public void genericAttack(Object o) {
-        attack((Heroic) o);
-    }
 
     /**
      *  Receives a Jump from Marcos, damage is calculated normally.
@@ -66,8 +62,6 @@ public class Goomba extends AbstractEnemies implements AttackableByLuis {
     public void defendFromLuisJump(Playable player) {
         int dmg = this.damage(player.getKJump(), player, this);
         this.addHP(dmg);
-        int dime = this.getHP();
-        System.out.println(this.getHP());
     }
 
     /**

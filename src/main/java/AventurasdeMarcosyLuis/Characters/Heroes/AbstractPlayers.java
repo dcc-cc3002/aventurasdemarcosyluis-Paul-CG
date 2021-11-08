@@ -1,7 +1,7 @@
 package AventurasdeMarcosyLuis.Characters.Heroes;
 
 import AventurasdeMarcosyLuis.Characters.AbstractCharacter;
-import AventurasdeMarcosyLuis.Characters.Heroes.Heroic;
+import AventurasdeMarcosyLuis.Characters.Enemies.Wicked;
 
 /**
  * Players Extends Character, it represents the main characters of the game.
@@ -9,13 +9,10 @@ import AventurasdeMarcosyLuis.Characters.Heroes.Heroic;
  * to the main characters.
  *
  * @author Paul Chauveau Gerber
- * @version 1.2
- * @since 2021-10-12
+ * @version 1.4
+ * @since 2021-11-07
  */
 public abstract class AbstractPlayers extends AbstractCharacter implements Heroic {
-    private double KJump;
-    private double KHammer;
-
 
     /**
      * Constructor of the class, it defines two types of K (hammer and jump)
@@ -24,25 +21,13 @@ public abstract class AbstractPlayers extends AbstractCharacter implements Heroi
      */
     public AbstractPlayers(int LVL, int ATK, int DEF, int HPMax, int FPMax) {
         super(LVL, ATK, DEF, HPMax, FPMax);
-        KHammer = 1.5;
-        KJump = 1;
     }
 
     @Override
-    public double getKHammer(){
-        return KHammer;
-    }
+    public void jump(Wicked o) {    }
 
     @Override
-    public double getKJump(){
-        return KJump;
-    }
-
-    @Override
-    public void genericJump(Object o) {    }
-
-    @Override
-    public void genericHammer(Object o) {    }
+    public void hammer(Wicked o) {    }
 }
 
 

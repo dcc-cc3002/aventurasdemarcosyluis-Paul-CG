@@ -7,8 +7,8 @@ import AventurasdeMarcosyLuis.Characters.Enemies.Wicked;
  * Creates a Marcos Character, extended from Players
  *
  * @author Paul Chauveau Gerber
- * @version 1.0
- * @since 2021-09-23
+ * @version 1.2
+ * @since 2021-11-07
  */
 public class Marcos extends AbstractPlayers {
     /**
@@ -28,14 +28,10 @@ public class Marcos extends AbstractPlayers {
      *
      * @param enemy the target of the Jump attack.
      */
+    @Override
     public void jump(Wicked enemy){
         this.addFP(-1);
         enemy.defendFromMarcosJump(this);
-    }
-
-    @Override
-    public void genericJump(Object o) {
-        jump((Wicked) o);
     }
 
     /**
@@ -43,14 +39,10 @@ public class Marcos extends AbstractPlayers {
      *
      * @param enemy the target of the Hammer attack.
      */
+    @Override
     public void hammer(Wicked enemy){
         this.addFP(-2);
         enemy.defendFromMarcosHammer(this);
-    }
-
-    @Override
-    public void genericHammer(Object o) {
-        hammer((Wicked) o);
     }
 
     /**

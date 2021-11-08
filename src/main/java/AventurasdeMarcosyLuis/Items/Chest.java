@@ -18,14 +18,14 @@ public class Chest {
      * Construct of the class Chest, it initializes the HashMap
      */
     public Chest(){
-        inventory = new HashMap<Consumable, Integer>();
+        inventory = new HashMap<>();
     }
 
     /**
      * Returns the full inventory.
      * @return inventory
      */
-    public HashMap getItems(){
+    public HashMap<Consumable, Integer> getItems(){
         return inventory;
     }
 

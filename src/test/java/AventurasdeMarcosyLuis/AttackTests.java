@@ -36,7 +36,7 @@ public class AttackTests {
 
     @Test
     public void jumpDamageAndFPTest(){
-        int dmg = (int) -Math.floor(testMarcos.getATK()*testMarcos.getLVL()/testGoomba.getDEF());
+        int dmg = (int) -Math.ceil(testMarcos.getATK()*testMarcos.getLVL()/testGoomba.getDEF())-1;
 
         int fp_init = testMarcos.getFP();
         testMarcos.jump(testGoomba);
@@ -48,7 +48,7 @@ public class AttackTests {
 
     @Test
     public void hammerDamageAndFPTest(){
-        int dmg = (int) -Math.floor(1.5*testMarcos.getATK()*testMarcos.getLVL()/testGoomba.getDEF());
+        int dmg = (int) -Math.ceil(1.5*testMarcos.getATK()*testMarcos.getLVL()/testGoomba.getDEF());
 
         int fp_init = testMarcos.getFP();
         testMarcos.hammer(testGoomba);
@@ -123,7 +123,7 @@ public class AttackTests {
 
     @Test
     public void enemyDamageTest(){
-        int dmg = (int) -Math.floor(0.75*testGoomba.getATK()*testGoomba.getLVL()/testMarcos.getDEF());
+        int dmg = (int) -Math.ceil(0.75*testGoomba.getATK()*testGoomba.getLVL()/testMarcos.getDEF());
 
         int hp_init = testMarcos.getHP();
         testGoomba.attack(testMarcos);

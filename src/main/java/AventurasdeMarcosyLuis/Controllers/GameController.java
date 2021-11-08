@@ -24,10 +24,9 @@ import java.util.LinkedList;
  */
 public class GameController {
 
-    private final LinkedList<Playable> players = new LinkedList<Playable>();
-    private final LinkedList<Playable> enemies = new LinkedList<Playable>();
-    private LinkedList<Playable> currentCharacters = new LinkedList<Playable>();
-    private Playable character;
+    private final LinkedList<Playable> players = new LinkedList<>();
+    private final LinkedList<Playable> enemies = new LinkedList<>();
+    private LinkedList<Playable> currentCharacters = new LinkedList<>();
     private Marcos marcos;
     private Luis luis;
     private final Chest chest = new Chest();
@@ -88,7 +87,7 @@ public class GameController {
         int list_length = currentCharacters.size();
         int i = 0;
         while (i < list_length){
-            character = currentCharacters.get(i);
+            Playable character = currentCharacters.get(i);
             if (character.isKO()){
                 currentCharacters.remove(character);
                 i--;
@@ -176,7 +175,7 @@ public class GameController {
      * Gets all the items that are stored in the chest (names and amount).
      * @return hashmap of the full chest
      */
-    public HashMap getMapItems(){
+    public HashMap<Consumable, Integer> getMapItems(){
         return chest.getItems();
     }
 
@@ -184,9 +183,9 @@ public class GameController {
      * Gets the names of all items in the chest.
      * @return list of items in the chest
      */
-    public LinkedList getListItems(){
-        HashMap map = getMapItems();
-        return new LinkedList<String>(map.keySet());
+    public LinkedList<Consumable> getListItems(){
+        HashMap<Consumable, Integer> map = getMapItems();
+        return new LinkedList<>(map.keySet());
     }
 
     /**
@@ -203,9 +202,10 @@ public class GameController {
      * @param attacker Hero attacking
      * @param defender Enemy defending
      */
-   public void playerJumpAttacks(Heroic attacker, Wicked defender) {
-       attacker.genericJump(defender);
-   }
+    public void playerJumpAttacks(Heroic attacker, Wicked defender) {
+        attacker.jump(defender);
+    }
+
 
     /**
      * This method represents the hammer attack that Heroes have.
@@ -213,7 +213,7 @@ public class GameController {
      * @param defender Enemy defending
      */
     public void playerHammerAttacks(Heroic attacker, Wicked defender) {
-        attacker.genericHammer(defender);
+        attacker.hammer(defender);
     }
 
     /**
@@ -222,7 +222,7 @@ public class GameController {
      * @param defender Hero defending
      */
     public void enemyAttack(Wicked attacker, Heroic defender) {
-        attacker.genericAttack(defender);
+        attacker.attack(defender);
     }
 
 }

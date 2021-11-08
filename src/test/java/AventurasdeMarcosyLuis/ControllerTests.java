@@ -1,5 +1,6 @@
 package AventurasdeMarcosyLuis;
 
+import AventurasdeMarcosyLuis.Characters.Enemies.Goomba;
 import AventurasdeMarcosyLuis.Characters.Enemies.Wicked;
 import AventurasdeMarcosyLuis.Characters.Heroes.Heroic;
 import AventurasdeMarcosyLuis.Characters.Playable;
@@ -78,19 +79,41 @@ public class ControllerTests {
     }
 
     @Test
-    public void playerAttackTest() {
+    public void playerJumpAttackTest() {
         listOfCharacters = controller.initializePlayers();
-        listAux = controller.initializeEnemies(4);
-        listOfCharacters = controller.formCurrentCharactersList(listOfCharacters, listAux);
 
         character = listOfCharacters.get(0);
-        enemy = listOfCharacters.get(2);
+        enemy = new Goomba(2, 10, 8, 50, 10);
 
         controller.playerJumpAttacks((Heroic) character, (Wicked) enemy);
-        controller.playerHammerAttacks((Heroic) character, (Wicked) enemy);
-        controller.enemyAttack((Wicked) enemy, (Heroic) character);
 
         assertNotEquals(enemy.getHPMax(),enemy.getHP());
+    }
+
+    @Test
+    public void playerHammerAttackTest() {
+        listOfCharacters = controller.initializePlayers();
+
+        character = listOfCharacters.get(0);
+        enemy = new Goomba(2, 10, 8, 50, 10);
+
+        controller.playerHammerAttacks((Heroic) character, (Wicked) enemy);
+        controller.playerHammerAttacks((Heroic) character, (Wicked) enemy);
+        controller.playerHammerAttacks((Heroic) character, (Wicked) enemy);
+        controller.playerHammerAttacks((Heroic) character, (Wicked) enemy);
+
+        assertNotEquals(enemy.getHPMax(),enemy.getHP());
+    }
+
+    @Test
+    public void enemyAttackTest() {
+        listOfCharacters = controller.initializePlayers();
+
+        character = listOfCharacters.get(1);
+        enemy = new Goomba(2, 10, 8, 50, 10);
+
+        controller.enemyAttack((Wicked) enemy, (Heroic) character);
+
         assertNotEquals(character.getHPMax(),character.getHP());
     }
 

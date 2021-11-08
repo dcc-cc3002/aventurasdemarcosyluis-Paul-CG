@@ -1,6 +1,7 @@
 package AventurasdeMarcosyLuis.Characters.Heroes;
 
 import AventurasdeMarcosyLuis.Characters.Enemies.AttackableByLuis;
+import AventurasdeMarcosyLuis.Characters.Enemies.Wicked;
 import AventurasdeMarcosyLuis.Characters.Playable;
 
 /**
@@ -23,19 +24,24 @@ public class Luis extends AbstractPlayers implements AttackableByBoo {
         super(LVL, ATK, DEF, HPMax, FPMax);
     }
 
+    @Override
+    public void jump(Wicked enemy){
+        this.jump((AttackableByLuis) enemy);
+    }
+
     /**
-     * Players most basic attack, it costs 1 FP.
+     * Players most basic attack, it costs 1 FP. This private version is only for Luis.
      *
      * @param enemy the target of the Jump attack.
      */
-    public void jump(AttackableByLuis enemy){
+    private void jump(AttackableByLuis enemy) {
         this.addFP(-1);
         enemy.defendFromLuisJump(this);
     }
 
     @Override
-    public void genericJump(Object o) {
-        jump((AttackableByLuis) o);
+    public void hammer(Wicked enemy){
+        this.hammer((AttackableByLuis) enemy);
     }
 
     /**
@@ -43,15 +49,11 @@ public class Luis extends AbstractPlayers implements AttackableByBoo {
      *
      * @param enemy the target of the Hammer attack.
      */
-    public void hammer(AttackableByLuis enemy){
+    private void hammer(AttackableByLuis enemy){
         this.addFP(-2);
         enemy.defendFromLuisHammer(this);
     }
 
-    @Override
-    public void genericHammer(Object o) {
-        hammer((AttackableByLuis) o);
-    }
 
     /**
      * Response to an incoming attack from Goomba.
