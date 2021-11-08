@@ -1,4 +1,7 @@
-package AventurasdeMarcosyLuis.Characters;
+package AventurasdeMarcosyLuis.Characters.Heroes;
+
+import AventurasdeMarcosyLuis.Characters.AbstractCharacter;
+import AventurasdeMarcosyLuis.Characters.Heroes.Heroic;
 
 /**
  * Players Extends Character, it represents the main characters of the game.
@@ -9,7 +12,7 @@ package AventurasdeMarcosyLuis.Characters;
  * @version 1.2
  * @since 2021-10-12
  */
-public abstract class AbstractPlayers extends AbstractCharacter {
+public abstract class AbstractPlayers extends AbstractCharacter implements Heroic {
     private double KJump;
     private double KHammer;
 
@@ -34,6 +37,12 @@ public abstract class AbstractPlayers extends AbstractCharacter {
     public double getKJump(){
         return KJump;
     }
+
+    @Override
+    public void genericJump(Object o) {    }
+
+    @Override
+    public void genericHammer(Object o) {    }
 }
 
 

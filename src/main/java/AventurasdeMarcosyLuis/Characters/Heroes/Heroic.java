@@ -26,11 +26,11 @@ public interface Heroic<T> extends Playable {
     /**
      * Defines that all Heroes must have a jump attack
      */
-    default void jump(T t){}
+    void genericJump(T t);
 
     /**
      * Defines that all Heroes must have a hammer attack
      */
-    default void hammer(T t){}
+    void genericHammer(T t);
 
 }

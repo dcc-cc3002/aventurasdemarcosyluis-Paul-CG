@@ -12,7 +12,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * @version 1.0
  * @since 2021-09-14
  */
-public class Goomba extends AbstractEnemies implements Wicked, AttackableByLuis {
+public class Goomba extends AbstractEnemies implements AttackableByLuis {
     /**
      * Constructor of Goomba
      * @param LVL level
@@ -31,6 +31,11 @@ public class Goomba extends AbstractEnemies implements Wicked, AttackableByLuis 
      */
     public void attack(Heroic player) {
         player.defendFromGoomba(this);
+    }
+
+    @Override
+    public void genericAttack(Object o) {
+        attack((Heroic) o);
     }
 
     /**
@@ -61,6 +66,8 @@ public class Goomba extends AbstractEnemies implements Wicked, AttackableByLuis 
     public void defendFromLuisJump(Playable player) {
         int dmg = this.damage(player.getKJump(), player, this);
         this.addHP(dmg);
+        int dime = this.getHP();
+        System.out.println(this.getHP());
     }
 
     /**

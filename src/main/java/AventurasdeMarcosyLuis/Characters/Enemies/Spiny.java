@@ -13,7 +13,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * @version 1.0
  * @since 2021-09-14
  */
-public class Spiny extends AbstractEnemies implements Wicked, AttackableByLuis {
+public class Spiny extends AbstractEnemies implements AttackableByLuis {
     /**
      * Constructor of Spiny
      * @param LVL level
@@ -32,6 +32,11 @@ public class Spiny extends AbstractEnemies implements Wicked, AttackableByLuis {
      */
     public void attack(Heroic player) {
         player.defendFromSpiny(this);
+    }
+
+    @Override
+    public void genericAttack(Object o) {
+        attack((Heroic) o);
     }
 
     /**

@@ -1,7 +1,5 @@
 package AventurasdeMarcosyLuis.Controllers;
 
-import AventurasdeMarcosyLuis.Characters.Enemies.AttackableByLuis;
-import AventurasdeMarcosyLuis.Characters.Enemies.Goomba;
 import AventurasdeMarcosyLuis.Characters.Enemies.Wicked;
 import AventurasdeMarcosyLuis.Characters.Heroes.Heroic;
 import AventurasdeMarcosyLuis.Characters.Heroes.Luis;
@@ -35,7 +33,7 @@ public class GameController {
     private final Chest chest = new Chest();
     private final RedMushroom redMushroom = new RedMushroom();
     private final HoneySyrup honeySyrup = new HoneySyrup();
-    WickedFactory wickedFactory = new WickedFactory(1, 10, 8, 50);
+    WickedFactory wickedFactory = new WickedFactory(1, 30, 8, 50);
 
     /**
      * It creates the mains characters of the game, Marcos and Luis
@@ -200,32 +198,31 @@ public class GameController {
         return chest.howManyItems(item);
     }
 
-   /** public void marcosJumpAttacks(Marcos attacker, Wicked defender) {
-            attacker.jump(defender);
-    }
-
-    public void marcosHammerAttacks(Marcos attacker, Wicked defender) {
-        attacker.hammer(defender);
-    }
-
-    public void luisJumpAttacks(Luis attacker, AttackableByLuis defender) {
-        attacker.jump(defender);
-    }
-
-    public void luisHammerAttacks(Luis attacker, AttackableByLuis defender) {
-        attacker.hammer(defender);
-    }*/
-
+    /**
+     * This method represents the jump attack that Heroes have.
+     * @param attacker Hero attacking
+     * @param defender Enemy defending
+     */
    public void playerJumpAttacks(Heroic attacker, Wicked defender) {
-       attacker.jump(defender);
+       attacker.genericJump(defender);
    }
 
+    /**
+     * This method represents the hammer attack that Heroes have.
+     * @param attacker Hero attacking
+     * @param defender Enemy defending
+     */
     public void playerHammerAttacks(Heroic attacker, Wicked defender) {
-        attacker.hammer(defender);
+        attacker.genericHammer(defender);
     }
 
+    /**
+     * This method represents the standard attack that Enemies have.
+     * @param attacker Enemy attacking
+     * @param defender Hero defending
+     */
     public void enemyAttack(Wicked attacker, Heroic defender) {
-        attacker.attack(defender);
+        attacker.genericAttack(defender);
     }
 
 }

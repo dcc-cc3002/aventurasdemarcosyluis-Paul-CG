@@ -40,3 +40,9 @@ of the Model, decoupling the View.
 ### Turn Testing
 We have implemented a "Mock-Turn" to test all functionalities. Please refer to it 
 at test->TurnTest.
+
+### Attack Testing
+When calling the playerAttackTest on ControllerTest battery tests, when a Boo character
+is created if Luis is attacking, an error will rise. This is by design. The idea is to
+catch that error on the last version and prompt a message to the player telling him
+that Luis is too afraid to attack Boo.

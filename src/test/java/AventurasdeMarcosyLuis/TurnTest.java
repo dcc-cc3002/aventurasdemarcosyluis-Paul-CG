@@ -8,7 +8,6 @@ import AventurasdeMarcosyLuis.Items.Consumable;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashMap;
 import java.util.LinkedList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,12 +16,10 @@ public class TurnTest {
 
     private GameController controller;
     private LinkedList<Playable> listOfCharacters;
+    private LinkedList<Playable> listOfPlayers;
     private LinkedList<Consumable> listOfItems;
-    private LinkedList instructions;
     private LinkedList listAux;
-    private HashMap<Consumable, Integer> map;
     private Playable character;
-    private Playable enemy;
 
     @BeforeEach
     public void setUp(){
@@ -30,7 +27,6 @@ public class TurnTest {
         listOfCharacters = new LinkedList();
         listOfItems = new LinkedList<>();
         listAux = new LinkedList();
-        map = new HashMap();
     }
 
     /**
@@ -43,9 +39,9 @@ public class TurnTest {
         /**
          * We initialize all characters...
          */
-        listOfCharacters = controller.initializePlayers();
+        listOfPlayers = controller.initializePlayers();
         listAux = controller.initializeEnemies(4);
-        listOfCharacters = controller.formCurrentCharactersList(listOfCharacters, listAux);
+        listOfCharacters = controller.formCurrentCharactersList(listOfPlayers, listAux);
         /**
          * ... and Items...
          */
@@ -102,7 +98,15 @@ public class TurnTest {
          */
         controller.removeDead(listOfCharacters);
 
+        /**
+         * We check if we won...
+         */
         assertTrue(controller.didIWin(listOfCharacters));
+
+        /**
+         * We restock the chest and heal all players
+         */
+        controller.endBattle(listOfPlayers);
     }
 
 }

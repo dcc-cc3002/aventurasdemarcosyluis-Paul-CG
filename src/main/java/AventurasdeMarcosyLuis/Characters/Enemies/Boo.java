@@ -1,6 +1,7 @@
 package AventurasdeMarcosyLuis.Characters.Enemies;
 
 import AventurasdeMarcosyLuis.Characters.Heroes.AttackableByBoo;
+import AventurasdeMarcosyLuis.Characters.Heroes.Heroic;
 import AventurasdeMarcosyLuis.Characters.Playable;
 
 /**
@@ -10,7 +11,7 @@ import AventurasdeMarcosyLuis.Characters.Playable;
  * @version 1.0
  * @since 2021-09-14
  */
-public class Boo extends AbstractEnemies implements Wicked {
+public class Boo extends AbstractEnemies {
     /**
      * Constructor of Boo
      * @param LVL level
@@ -29,6 +30,11 @@ public class Boo extends AbstractEnemies implements Wicked {
      */
     public void attack(AttackableByBoo player) {
         player.defendFromBoo(this);
+    }
+
+    @Override
+    public void genericAttack(Object o) {
+        attack((AttackableByBoo) o);
     }
 
     /**

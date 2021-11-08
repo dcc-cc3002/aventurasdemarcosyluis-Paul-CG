@@ -9,7 +9,7 @@ import AventurasdeMarcosyLuis.Characters.Playable;
  * @version 1.1
  * @since 2021-10-10
  */
-public interface Wicked<T> {
+public interface Wicked<T> extends Playable {
 
     /**
      * This methods defends from a jump attack from Marcos
@@ -28,6 +28,6 @@ public interface Wicked<T> {
      * This method declares the attack method for all wicked characters
      * @param t
      */
-    default void attack(T t){}
+    void genericAttack(T t);
 
 }

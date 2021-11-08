@@ -1,6 +1,5 @@
 package AventurasdeMarcosyLuis.Characters.Heroes;
 
-import AventurasdeMarcosyLuis.Characters.AbstractPlayers;
 import AventurasdeMarcosyLuis.Characters.Playable;
 import AventurasdeMarcosyLuis.Characters.Enemies.Wicked;
 
@@ -11,7 +10,7 @@ import AventurasdeMarcosyLuis.Characters.Enemies.Wicked;
  * @version 1.0
  * @since 2021-09-23
  */
-public class Marcos extends AbstractPlayers implements Heroic {
+public class Marcos extends AbstractPlayers {
     /**
      * Constructor of Marcos
      * @param LVL level
@@ -34,6 +33,11 @@ public class Marcos extends AbstractPlayers implements Heroic {
         enemy.defendFromMarcosJump(this);
     }
 
+    @Override
+    public void genericJump(Object o) {
+        jump((Wicked) o);
+    }
+
     /**
      * Players secondary attack, more powerful, but it has a miss ratio of 25% and costs 2 FP.
      *
@@ -42,6 +46,11 @@ public class Marcos extends AbstractPlayers implements Heroic {
     public void hammer(Wicked enemy){
         this.addFP(-2);
         enemy.defendFromMarcosHammer(this);
+    }
+
+    @Override
+    public void genericHammer(Object o) {
+        hammer((Wicked) o);
     }
 
     /**

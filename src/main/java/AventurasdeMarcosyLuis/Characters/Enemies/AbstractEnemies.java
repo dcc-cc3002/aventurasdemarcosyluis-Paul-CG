@@ -9,7 +9,7 @@ import AventurasdeMarcosyLuis.Characters.AbstractCharacter;
  * @version 1.0
  * @since 2021-09-14
  */
-public abstract class AbstractEnemies extends AbstractCharacter {
+public abstract class AbstractEnemies extends AbstractCharacter implements Wicked {
 
     /**
      * Creates a new Enemy
@@ -19,5 +19,6 @@ public abstract class AbstractEnemies extends AbstractCharacter {
         super(LVL, ATK, DEF, HPMax, FPMax);
     }
 
-
+    @Override
+    public void genericAttack(Object o) {    }
 }

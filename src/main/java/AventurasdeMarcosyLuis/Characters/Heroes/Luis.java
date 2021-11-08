@@ -1,6 +1,5 @@
 package AventurasdeMarcosyLuis.Characters.Heroes;
 
-import AventurasdeMarcosyLuis.Characters.AbstractPlayers;
 import AventurasdeMarcosyLuis.Characters.Enemies.AttackableByLuis;
 import AventurasdeMarcosyLuis.Characters.Playable;
 
@@ -11,7 +10,7 @@ import AventurasdeMarcosyLuis.Characters.Playable;
  * @version 1.0
  * @since 2021-09-23
  */
-public class Luis extends AbstractPlayers implements Heroic, AttackableByBoo {
+public class Luis extends AbstractPlayers implements AttackableByBoo {
     /**
      * Constructor of Luis
      * @param LVL level
@@ -34,6 +33,11 @@ public class Luis extends AbstractPlayers implements Heroic, AttackableByBoo {
         enemy.defendFromLuisJump(this);
     }
 
+    @Override
+    public void genericJump(Object o) {
+        jump((AttackableByLuis) o);
+    }
+
     /**
      * Players secondary attack, more powerful, but it has a miss ratio of 25% and costs 2 FP.
      *
@@ -42,6 +46,11 @@ public class Luis extends AbstractPlayers implements Heroic, AttackableByBoo {
     public void hammer(AttackableByLuis enemy){
         this.addFP(-2);
         enemy.defendFromLuisHammer(this);
+    }
+
+    @Override
+    public void genericHammer(Object o) {
+        hammer((AttackableByLuis) o);
     }
 
     /**
