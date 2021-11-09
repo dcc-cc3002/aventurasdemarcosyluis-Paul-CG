@@ -46,3 +46,21 @@ When calling the playerAttackTest on ControllerTest battery tests, when a Boo ch
 is created if Luis is attacking, an error will rise. This is by design. The idea is to
 catch that error on the last version and prompt a message to the player telling him
 that Luis is too afraid to attack Boo.
+
+### Last minute remarks
+The attack method in the controller was design to make the game more extendable.
+So, there is only one method for each attack-type (jump, hammer and enemy attack).
+Given the attack restrictions of Luis and Boo, to reach the final method (the one 
+that lives in Luis) an auxiliary private method is used to handle the conversion 
+via a cast. I thought that, given a strong argument, we could use casting. Note that
+this casting casts from Wicked to AttackableByLuis, which is contained in Wicked.
+So. this configuration when Luis attacks Boo, an error is raised. This is by design.
+The idea is to catch this error and show the player a message like "Luis is too afraid to 
+attack Boo", improving the lore of the game. As people say, **"this is not a bug,
+is a feature"**.
+
+Other alternatives require a lot more code (complex one at that) and are less 
+extensible. Think of adding one character or a new type of attack, what about 
+items that change the attack pattern? It would basically kill any effort to 
+extend/upgrade the game.
+
