@@ -10,6 +10,7 @@ import AventurasdeMarcosyLuis.Items.Chest;
 import AventurasdeMarcosyLuis.Items.Consumable;
 import AventurasdeMarcosyLuis.Items.HoneySyrup;
 import AventurasdeMarcosyLuis.Items.RedMushroom;
+import Visitor.JumpAttackVisitor;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -204,6 +205,9 @@ public class GameController {
      */
     public void playerJumpAttacks(Heroic attacker, Wicked defender) {
         attacker.jump(defender);
+        //JumpAttackVisitor jumpAttackVisitor = new JumpAttackVisitor(defender);
+        //attacker.accept(jumpAttackVisitor);
+        //defender.accept(jumpAttackVisitor);
     }
 
 

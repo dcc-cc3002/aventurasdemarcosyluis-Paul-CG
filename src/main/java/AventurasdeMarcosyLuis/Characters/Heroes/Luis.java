@@ -3,6 +3,7 @@ package AventurasdeMarcosyLuis.Characters.Heroes;
 import AventurasdeMarcosyLuis.Characters.Enemies.AttackableByLuis;
 import AventurasdeMarcosyLuis.Characters.Enemies.Wicked;
 import AventurasdeMarcosyLuis.Characters.Playable;
+import Visitor.Visitor;
 
 /**
  * Creates a Luis Character, extended from Players
@@ -84,4 +85,9 @@ public class Luis extends AbstractPlayers implements AttackableByBoo {
         int dmg = this.damage(enemy.getK(),enemy, this);
         this.addHP(dmg);
     }
+
+    public void accept(Visitor visitor){
+        visitor.visitLuis(this);
+    }
+
 }

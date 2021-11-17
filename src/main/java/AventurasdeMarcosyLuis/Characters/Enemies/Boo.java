@@ -3,6 +3,7 @@ package AventurasdeMarcosyLuis.Characters.Enemies;
 import AventurasdeMarcosyLuis.Characters.Heroes.AttackableByBoo;
 import AventurasdeMarcosyLuis.Characters.Heroes.Heroic;
 import AventurasdeMarcosyLuis.Characters.Playable;
+import Visitor.Visitor;
 
 /**
  * Creates template with shared data of all types of characters in the game
@@ -54,6 +55,10 @@ public class Boo extends AbstractEnemies {
     public void defendFromMarcosHammer(Playable player) {
         int dmg = 0;
         this.addHP(dmg);
+    }
+
+    public void accept(Visitor visitor){
+        visitor.visitBoo(this);
     }
 
 }
