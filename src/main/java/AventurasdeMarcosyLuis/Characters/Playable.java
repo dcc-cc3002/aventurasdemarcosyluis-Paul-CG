@@ -1,12 +1,14 @@
 package AventurasdeMarcosyLuis.Characters;
 
-import Visitor.Visitor;
-
 /**
  * This Playable interface shares all basics methods that all Characters need.
  */
 public interface Playable {
 
+    /**
+     * Get the current level of a Character
+     * @return
+     */
     int getLVL();
 
     /**
@@ -119,5 +121,4 @@ public interface Playable {
      */
     void lvlUp();
 
-    void accept(Visitor visitor);
 }

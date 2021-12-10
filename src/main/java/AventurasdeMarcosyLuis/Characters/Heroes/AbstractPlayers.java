@@ -24,10 +24,10 @@ public abstract class AbstractPlayers extends AbstractCharacter implements Heroi
     }
 
     @Override
-    public void jump(Wicked o) {    }
+    public void jump(Wicked enemy) {    }
 
     @Override
-    public void hammer(Wicked o) {    }
+    public void hammer(Wicked enemy) {    }
 }
 
 

@@ -2,7 +2,6 @@ package AventurasdeMarcosyLuis.Characters.Enemies;
 
 import AventurasdeMarcosyLuis.Characters.Heroes.Heroic;
 import AventurasdeMarcosyLuis.Characters.Playable;
-import Visitor.Visitor;
 
 import java.lang.Math;
 import java.util.concurrent.ThreadLocalRandom;
@@ -78,8 +77,4 @@ public class Spiny extends AbstractEnemies implements AttackableByLuis {
         this.addHP(dmg);
     }
 
-    @Override
-    public void accept(Visitor visitor) {
-
-    }
 }

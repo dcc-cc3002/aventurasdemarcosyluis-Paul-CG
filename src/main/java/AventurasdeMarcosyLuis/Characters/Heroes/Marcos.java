@@ -2,7 +2,6 @@ package AventurasdeMarcosyLuis.Characters.Heroes;
 
 import AventurasdeMarcosyLuis.Characters.Playable;
 import AventurasdeMarcosyLuis.Characters.Enemies.Wicked;
-import Visitor.Visitor;
 
 /**
  * Creates a Marcos Character, extended from Players
@@ -66,8 +65,4 @@ public class Marcos extends AbstractPlayers {
         this.addHP(dmg);
     }
 
-    @Override
-    public void accept(Visitor visitor) {
-
-    }
 }

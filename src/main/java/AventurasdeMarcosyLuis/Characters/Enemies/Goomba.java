@@ -2,7 +2,6 @@ package AventurasdeMarcosyLuis.Characters.Enemies;
 
 import AventurasdeMarcosyLuis.Characters.Heroes.Heroic;
 import AventurasdeMarcosyLuis.Characters.Playable;
-import Visitor.Visitor;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -77,8 +76,4 @@ public class Goomba extends AbstractEnemies implements AttackableByLuis {
         this.addHP(dmg);
     }
 
-    @Override
-    public void accept(Visitor visitor) {
-
-    }
 }

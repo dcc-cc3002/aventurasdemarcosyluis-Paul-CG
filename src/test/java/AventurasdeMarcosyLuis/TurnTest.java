@@ -15,18 +15,19 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TurnTest {
 
     private GameController controller;
-    private LinkedList<Playable> listOfCharacters;
-    private LinkedList<Playable> listOfPlayers;
-    private LinkedList<Consumable> listOfItems;
-    private LinkedList listAux;
-    private Playable character;
 
     @BeforeEach
     public void setUp(){
         controller = new GameController();
-        listOfCharacters = new LinkedList();
-        listOfItems = new LinkedList<>();
-        listAux = new LinkedList();
+        controller.createChest();
+        controller.createRedMushroom();
+        controller.createHoneySyrup();
+        controller.initializeLists();
+        controller.stockChest(3);
+
+        controller.initializePlayers();
+        controller.initializeEnemies(4);
+        controller.formCurrentCharactersList();
     }
 
     /**
@@ -35,78 +36,71 @@ public class TurnTest {
      * will run smoothly.
      */
     @Test
-    public void TurnTest() {
-        /**
-         * We initialize all characters...
-         */
-        listOfPlayers = controller.initializePlayers();
-        listAux = controller.initializeEnemies(4);
-        listOfCharacters = controller.formCurrentCharactersList(listOfPlayers, listAux);
+    public void turnTest() {
         /**
          * ... and Items...
          */
-        controller.stockChest(3);
-        listOfItems = controller.getListItems();
+        LinkedList<Consumable> listOfItems = controller.getListItems();
 
-        character = controller.getCurrentCharacter(listOfCharacters,1);
+        Playable character = controller.getCurrentCharacter(1);
         /**
         * Marcos decides to attack the first enemy
          */
-        controller.playerJumpAttacks((Heroic) character, (Wicked) listOfCharacters.get(2));
+        controller.playerJumpAttacks((Heroic) character, (Wicked) controller.getCurrentCharacters().get(2));
         /**
          * We change to the next character
          */
-        character = controller.getCurrentCharacter(listOfCharacters,2);
+        character = controller.getCurrentCharacter(2);
         /**
          * Luis decides to gang upon the same dude
          */
-        controller.playerJumpAttacks((Heroic) character, (Wicked) listOfCharacters.get(2));
+        controller.playerJumpAttacks((Heroic) character, (Wicked) controller.getCurrentCharacters().get(2));
         /**
          * Enemies attack Marcos and Luis (2 and 2)
          */
-        character = controller.getCurrentCharacter(listOfCharacters,3);
-        controller.enemyAttack((Wicked) character, (Heroic) listOfCharacters.get(0));
-        character = controller.getCurrentCharacter(listOfCharacters,4);
-        controller.enemyAttack((Wicked) character, (Heroic) listOfCharacters.get(0));
-        character = controller.getCurrentCharacter(listOfCharacters,5);
-        controller.enemyAttack((Wicked) character, (Heroic) listOfCharacters.get(1));
-        character = controller.getCurrentCharacter(listOfCharacters,6);
-        controller.enemyAttack((Wicked) character, (Heroic) listOfCharacters.get(1));
+        character = controller.getCurrentCharacter(3);
+        controller.enemyAttack((Wicked) character, (Heroic) controller.getCurrentCharacters().get(0));
+        character = controller.getCurrentCharacter(4);
+        controller.enemyAttack((Wicked) character, (Heroic) controller.getCurrentCharacters().get(0));
+        character = controller.getCurrentCharacter(5);
+        controller.enemyAttack((Wicked) character, (Heroic) controller.getCurrentCharacters().get(1));
+        character = controller.getCurrentCharacter(6);
+        controller.enemyAttack((Wicked) character, (Heroic) controller.getCurrentCharacters().get(1));
         /**
          * Marcos uses an Item
          */
-        character = controller.getCurrentCharacter(listOfCharacters,1);
-        controller.useItem(character,listOfItems.get(1));
+        character = controller.getCurrentCharacter(1);
+        controller.useItem(character, listOfItems.get(1));
         /**
          * Luis Passes
          */
-        character = controller.getCurrentCharacter(listOfCharacters,2);
+        character = controller.getCurrentCharacter(2);
         /**
          * Suddenly, an atomic bomb kills all enemies and finishes them off...
          */
-        character = controller.getCurrentCharacter(listOfCharacters,3);
+        character = controller.getCurrentCharacter(3);
         character.setHP(0);
-        character = controller.getCurrentCharacter(listOfCharacters,4);
+        character = controller.getCurrentCharacter(4);
         character.setHP(0);
-        character = controller.getCurrentCharacter(listOfCharacters,5);
+        character = controller.getCurrentCharacter(5);
         character.setHP(0);
-        character = controller.getCurrentCharacter(listOfCharacters,6);
+        character = controller.getCurrentCharacter(6);
         character.setHP(0);
 
         /**
          * We remove the dead from the turn
          */
-        controller.removeDead(listOfCharacters);
+        controller.removeDead();
 
         /**
          * We check if we won...
          */
-        assertTrue(controller.didIWin(listOfCharacters));
+        assertTrue(controller.didIWin());
 
         /**
          * We restock the chest and heal all players
          */
-        controller.endBattle(listOfPlayers);
+        controller.endBattle();
     }
 
 }

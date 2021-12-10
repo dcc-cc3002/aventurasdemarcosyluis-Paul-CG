@@ -26,14 +26,14 @@ public interface Heroic extends Playable {
 
     /**
      * Defines that all Heroes must have a jump attack
-     * @param o objective of the attack
+     * @param enemy objective of the attack
      */
-    void jump(Wicked o);
+    void jump(Wicked enemy);
 
     /**
      * Defines that all Heroes must have a hammer attack
-     * @param o objective of the attack
+     * @param enemy objective of the attack
      */
-    void hammer(Wicked o);
+    void hammer(Wicked enemy);
 
 }

@@ -3,7 +3,6 @@ package AventurasdeMarcosyLuis.Characters.Heroes;
 import AventurasdeMarcosyLuis.Characters.Enemies.AttackableByLuis;
 import AventurasdeMarcosyLuis.Characters.Enemies.Wicked;
 import AventurasdeMarcosyLuis.Characters.Playable;
-import Visitor.Visitor;
 
 /**
  * Creates a Luis Character, extended from Players
@@ -27,7 +26,7 @@ public class Luis extends AbstractPlayers implements AttackableByBoo {
 
     @Override
     public void jump(Wicked enemy){
-        this.jump((AttackableByLuis) enemy);
+        this.auxiliaryJump((AttackableByLuis) enemy);
     }
 
     /**
@@ -35,14 +34,14 @@ public class Luis extends AbstractPlayers implements AttackableByBoo {
      *
      * @param enemy the target of the Jump attack.
      */
-    private void jump(AttackableByLuis enemy) {
+    private void auxiliaryJump(AttackableByLuis enemy) {
         this.addFP(-1);
         enemy.defendFromLuisJump(this);
     }
 
     @Override
     public void hammer(Wicked enemy){
-        this.hammer((AttackableByLuis) enemy);
+        this.auxiliaryHammer((AttackableByLuis) enemy);
     }
 
     /**
@@ -50,7 +49,7 @@ public class Luis extends AbstractPlayers implements AttackableByBoo {
      *
      * @param enemy the target of the Hammer attack.
      */
-    private void hammer(AttackableByLuis enemy){
+    private void auxiliaryHammer(AttackableByLuis enemy){
         this.addFP(-2);
         enemy.defendFromLuisHammer(this);
     }
@@ -84,10 +83,6 @@ public class Luis extends AbstractPlayers implements AttackableByBoo {
     public void defendFromBoo(Playable enemy){
         int dmg = this.damage(enemy.getK(),enemy, this);
         this.addHP(dmg);
-    }
-
-    public void accept(Visitor visitor){
-        visitor.visitLuis(this);
     }
 
 }
