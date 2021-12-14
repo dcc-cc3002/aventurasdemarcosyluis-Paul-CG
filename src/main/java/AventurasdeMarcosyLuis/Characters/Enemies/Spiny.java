@@ -40,7 +40,7 @@ public class Spiny extends AbstractEnemies implements AttackableByLuis {
      * @param player is the original attacker.
      */
     public void defendFromMarcosJump(Playable player) {
-        int dmg = (int) -Math.floor(0.5* player.getHPMax());
+        int dmg = (int) -Math.floor(0.05* player.getHPMax());
         player.addHP(dmg);
     }
 
@@ -61,7 +61,7 @@ public class Spiny extends AbstractEnemies implements AttackableByLuis {
      * @param player is the original attacker.
      */
     public void defendFromLuisJump(Playable player) {
-        int dmg = (int) -Math.floor(0.5* player.getHPMax());
+        int dmg = (int) -Math.floor(0.05* player.getHPMax());
         player.addHP(dmg);
     }
 
@@ -77,4 +77,8 @@ public class Spiny extends AbstractEnemies implements AttackableByLuis {
         this.addHP(dmg);
     }
 
+    @Override
+    public String toString() {
+        return "Spiny";
+    }
 }

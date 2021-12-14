@@ -17,7 +17,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ControllerTests {
 
     private GameController controller;
-    private LinkedList<Playable> listOfCharacters;
     private LinkedList<Consumable> listOfItems;
     private LinkedList listAux;
     private HashMap<Consumable, Integer> map;
@@ -34,12 +33,11 @@ public class ControllerTests {
         controller.createChest();
         controller.createRedMushroom();
         controller.createHoneySyrup();
-        controller.initializeLists();
         controller.stockChest(3);
 
         controller.initializePlayers();
         controller.initializeEnemies(4);
-        controller.formCurrentCharactersList();
+        controller.formCurrentCharactersListBattle();
     }
 
     @Test
@@ -145,21 +143,15 @@ public class ControllerTests {
         assertTrue(controller.didILose());
     }
 
-    @Test
-    public void getCurrentCharacterTest() {
-        character = controller.getCurrentCharacter(2);
-        assertEquals(controller.getCurrentCharacters().get(1), character);
-
-        character = controller.getCurrentCharacter(9);
-        assertEquals(controller.getCurrentCharacters().get(2), character);
-    }
 
     @Test
     public void getNextCharacterTest() {
-        character = controller.getNextCharacter(2);
+        controller.setTurn(2);
+        character = controller.getNextCharacter();
         assertEquals(controller.getCurrentCharacters().get(2), character);
 
-        character = controller.getNextCharacter(9);
+        controller.setTurn(9);
+        character = controller.getNextCharacter();
         assertEquals(controller.getCurrentCharacters().get(3), character);
     }
 

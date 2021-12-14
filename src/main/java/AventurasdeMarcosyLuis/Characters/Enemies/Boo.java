@@ -56,4 +56,9 @@ public class Boo extends AbstractEnemies {
         this.addHP(dmg);
     }
 
+    @Override
+    public String toString() {
+        return "Boo";
+    }
+
 }

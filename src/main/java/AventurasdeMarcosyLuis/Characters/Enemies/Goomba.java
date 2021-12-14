@@ -76,4 +76,9 @@ public class Goomba extends AbstractEnemies implements AttackableByLuis {
         this.addHP(dmg);
     }
 
+    @Override
+    public String toString() {
+        return "Goomba";
+    }
+
 }

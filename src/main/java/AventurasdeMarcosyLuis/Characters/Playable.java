@@ -121,4 +121,8 @@ public interface Playable {
      */
     void lvlUp();
 
+    /**
+     * toString returns the name (or type) of a Character
+     */
+    String toString();
 }

@@ -13,4 +13,12 @@ public abstract class AbstractItems {
      */
     public AbstractItems(){}
 
+    /**
+     * Returns the name of the Item
+     * @return name of the Item
+     */
+    public String toString(){
+        return "Item";
+    }
+
 }

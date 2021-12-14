@@ -65,4 +65,9 @@ public class Marcos extends AbstractPlayers {
         this.addHP(dmg);
     }
 
+    @Override
+    public String toString() {
+        return "Marcos";
+    }
+
 }

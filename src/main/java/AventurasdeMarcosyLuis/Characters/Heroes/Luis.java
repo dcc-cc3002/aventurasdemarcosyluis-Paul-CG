@@ -3,6 +3,7 @@ package AventurasdeMarcosyLuis.Characters.Heroes;
 import AventurasdeMarcosyLuis.Characters.Enemies.AttackableByLuis;
 import AventurasdeMarcosyLuis.Characters.Enemies.Wicked;
 import AventurasdeMarcosyLuis.Characters.Playable;
+import AventurasdeMarcosyLuis.Phases.Exceptions.InvalidTargetException;
 
 /**
  * Creates a Luis Character, extended from Players
@@ -35,8 +36,8 @@ public class Luis extends AbstractPlayers implements AttackableByBoo {
      * @param enemy the target of the Jump attack.
      */
     private void auxiliaryJump(AttackableByLuis enemy) {
-        this.addFP(-1);
         enemy.defendFromLuisJump(this);
+        this.addFP(-1);
     }
 
     @Override
@@ -49,9 +50,9 @@ public class Luis extends AbstractPlayers implements AttackableByBoo {
      *
      * @param enemy the target of the Hammer attack.
      */
-    private void auxiliaryHammer(AttackableByLuis enemy){
-        this.addFP(-2);
+    private void auxiliaryHammer(AttackableByLuis enemy) {
         enemy.defendFromLuisHammer(this);
+        this.addFP(-2);
     }
 
 
@@ -83,6 +84,11 @@ public class Luis extends AbstractPlayers implements AttackableByBoo {
     public void defendFromBoo(Playable enemy){
         int dmg = this.damage(enemy.getK(),enemy, this);
         this.addHP(dmg);
+    }
+
+    @Override
+    public String toString() {
+        return "Luis";
     }
 
 }

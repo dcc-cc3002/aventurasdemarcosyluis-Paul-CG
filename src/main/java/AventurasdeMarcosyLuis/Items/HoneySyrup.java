@@ -26,4 +26,9 @@ public class HoneySyrup extends AbstractItems implements Consumable{
     public void activate(Playable character){
         character.addFP(3);
     }
+
+    @Override
+    public String toString(){
+        return "Honey Syrup";
+    }
 }
