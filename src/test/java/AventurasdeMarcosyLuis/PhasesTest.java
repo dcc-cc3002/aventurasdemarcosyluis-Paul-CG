@@ -5,7 +5,9 @@ import AventurasdeMarcosyLuis.Phases.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.InputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,12 +20,6 @@ public class PhasesTest {
         controller = new GameController();
         phase = new Phase();
         phase.setController(controller);
-
-    }
-
-    @Test
-    public void phaseTest() {
-
     }
 
     @Test
