@@ -7,10 +7,22 @@ public class EndGamePhase extends Phase{
     boolean win;
 
     /**+
-     * The constructor takes a boolean that indicates if the players won or lost the game
+     * The constructor takes a boolean that indicates if the players won or lost the game. It doesn't allow transitions.
      * @param win true if players won
      */
     public EndGamePhase(boolean win){
+        this.toLoad = false;
+        this.toBattleStart = false;
+        this.toWaitChoice = false;
+        this.toWaitAttack = false;
+        this.toWaitItem = false;
+        this.toAttack = false;
+        this.toItem = false;
+        this.toEnemyAttack = false;
+        this.toEndTurn = false;
+        this.toEndBattle = false;
+        this.toEndGame = false;
+
         this.win = win;
     }
 

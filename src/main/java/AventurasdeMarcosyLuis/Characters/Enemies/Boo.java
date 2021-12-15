@@ -3,6 +3,7 @@ package AventurasdeMarcosyLuis.Characters.Enemies;
 import AventurasdeMarcosyLuis.Characters.Heroes.AttackableByBoo;
 import AventurasdeMarcosyLuis.Characters.Heroes.Heroic;
 import AventurasdeMarcosyLuis.Characters.Playable;
+import AventurasdeMarcosyLuis.Phases.Exceptions.InvalidTargetException;
 
 /**
  * Creates template with shared data of all types of characters in the game
@@ -25,8 +26,12 @@ public class Boo extends AbstractEnemies {
     }
 
     @Override
-    public void attack(Heroic player){
-        this.auxiliaryAttack((AttackableByBoo) player);
+    public void attack(Heroic player) throws InvalidTargetException {
+        try {
+            this.auxiliaryAttack((AttackableByBoo) player);
+        } catch (ClassCastException e) {
+            throw new InvalidTargetException("Boo can only attack Luis!");
+        }
     }
 
     /**

@@ -12,14 +12,34 @@ public class Phase {
 
     protected GameController controller;
     protected Scanner reader;
-    public boolean canIStart;
-    public boolean canIAttack;
-    public boolean canIUseItem;
-    public boolean canIPass;
-    public boolean canISelectEnemy;
-    public boolean canISelectItem;
-    public boolean isEnemyTurn;
-    public boolean invalidTarget;
+    public boolean toLoad;
+    public boolean toBattleStart;
+    public boolean toWaitChoice;
+    public boolean toWaitAttack;
+    public boolean toWaitItem;
+    public boolean toAttack;
+    public boolean toItem;
+    public boolean toEnemyAttack;
+    public boolean toEndTurn;
+    public boolean toEndBattle;
+    public boolean toEndGame;
+
+    /**
+     * The constructor initializes with all transitions as false, to improve security against code injection
+     */
+    public Phase() {
+        this.toLoad = false;
+        this.toBattleStart = false;
+        this.toWaitChoice = false;
+        this.toWaitAttack = false;
+        this.toWaitItem = false;
+        this.toAttack = false;
+        this.toItem = false;
+        this.toEnemyAttack = false;
+        this.toEndTurn = false;
+        this.toEndBattle = false;
+        this.toEndGame = false;
+    }
 
     /**
      * Allows to set the controller to each phase
@@ -50,7 +70,7 @@ public class Phase {
      * @throws InvalidTransitionException in case of a transition that is not allowed
      */
     public void toNextPhase() throws InvalidTransitionException {
-        throw new InvalidTransitionException("You can't change to that Phase.");
+        throw new InvalidTransitionException("This transition is not allowed.");
     }
 
 

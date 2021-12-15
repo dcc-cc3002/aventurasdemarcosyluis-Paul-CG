@@ -3,6 +3,7 @@ package AventurasdeMarcosyLuis.Phases;
 import AventurasdeMarcosyLuis.Characters.Enemies.Wicked;
 import AventurasdeMarcosyLuis.Characters.Heroes.Heroic;
 import AventurasdeMarcosyLuis.Characters.Playable;
+import AventurasdeMarcosyLuis.Phases.Exceptions.InvalidTransitionException;
 
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -14,9 +15,22 @@ public class AttackPhase extends Phase{
     int attackType;
 
     /**
-     * The constructor uses a Scanner to take the users input, and the attack type from the previous phase
+     * The constructor uses a Scanner to take the users input, and the attack type from the previous phase. It also
+     * allows transitions to WaitAttack and EndTurn phases.
      */
     public AttackPhase(int attackType){
+        this.toLoad = false;
+        this.toBattleStart = false;
+        this.toWaitChoice = false;
+        this.toWaitAttack = true;
+        this.toWaitItem = false;
+        this.toAttack = false;
+        this.toItem = false;
+        this.toEnemyAttack = false;
+        this.toEndTurn = true;
+        this.toEndBattle = false;
+        this.toEndGame = false;
+
         reader = new Scanner(System.in);
         this.attackType = attackType;
     }
@@ -27,61 +41,67 @@ public class AttackPhase extends Phase{
     }
 
     @Override
-    public void toNextPhase(){
+    public void toNextPhase() throws InvalidTransitionException {
         String choice;
         Playable target = null;
         LinkedList<Playable> enemies = controller.getEnemies();
         int hpEnemy;
         int hpHero;
 
-        while(!controller.choiceIsEnemy(target)){
-            int enemyIndex = 1;
-            for(Playable enemy : enemies) {
-                System.out.println(enemyIndex + "- " + enemy.toString());
-                enemyIndex += 1;
-            }
-            System.out.println(enemyIndex + "- Back");
-            System.out.println("(Pick a number)");
-            choice = reader.nextLine();
-
-
-            try {
-                if(Integer.parseInt(choice) == enemyIndex) {
-                    changePhase(new WaitAttackPhase());
-                    break;
+        if(toEndTurn && toWaitAttack &&
+                !(toLoad && toBattleStart && toWaitChoice && toWaitItem && toAttack && toItem && toEnemyAttack && toEndBattle && toEndGame)){
+            while(!controller.choiceIsEnemy(target)){
+                int enemyIndex = 1;
+                for(Playable enemy : enemies) {
+                    System.out.println(enemyIndex + "- " + enemy.toString());
+                    enemyIndex += 1;
                 }
-                target = enemies.get(Integer.parseInt(choice)-1);
-            } catch (NumberFormatException e){
-                System.out.println("Please choose a valid option.");
-                continue;
-            }
+                System.out.println(enemyIndex + "- Back");
+                System.out.println("(Pick a number)");
+                choice = reader.nextLine();
 
-            if (controller.choiceIsEnemy(target)){
-                hpEnemy = target.getHP();
-                hpHero = controller.getCurrentCharacter().getHP();
 
-                if (attackType == 1){
-                    controller.playerJumpAttacks((Heroic) controller.getCurrentCharacter(), (Wicked) target);
-                    hpEnemy -= target.getHP();
-                    hpHero -= controller.getCurrentCharacter().getHP();
-                    if (hpHero != 0) {
-                        System.out.println("You hurt yourself with " + hpHero + " points of damage!!");
-                    } else {
-                        System.out.println("You did " + hpEnemy + " points of damage to " + target.toString());
+                try {
+                    if(Integer.parseInt(choice) == enemyIndex) {
+                        changePhase(new WaitAttackPhase());
+                        break;
                     }
-                } else if (attackType == 2) {
-                    controller.playerHammerAttacks((Heroic) controller.getCurrentCharacter(), (Wicked) target);
-                    hpEnemy -= target.getHP();
-                    if (hpEnemy == 0) {
-                        System.out.println("MISS!");
-                    } else {
-                        System.out.println("You did " + hpEnemy + " points of damage to " + target.toString());
-                    }
+                    target = enemies.get(Integer.parseInt(choice)-1);
+                } catch (NumberFormatException e){
+                    System.out.println("Please choose a valid option.");
+                    continue;
                 }
-                changePhase(new EndTurnPhase());
-            } else {
-                System.out.println("Please choose a valid option.");
+
+                if (controller.choiceIsEnemy(target)){
+                    hpEnemy = target.getHP();
+                    hpHero = controller.getCurrentCharacter().getHP();
+
+                    if (attackType == 1){
+                        controller.playerJumpAttacks((Heroic) controller.getCurrentCharacter(), (Wicked) target);
+                        hpEnemy -= target.getHP();
+                        hpHero -= controller.getCurrentCharacter().getHP();
+                        if (hpHero != 0) {
+                            System.out.println("You hurt yourself with " + hpHero + " points of damage!!");
+                        } else {
+                            System.out.println("You did " + hpEnemy + " points of damage to " + target.toString());
+                        }
+                    } else if (attackType == 2) {
+                        controller.playerHammerAttacks((Heroic) controller.getCurrentCharacter(), (Wicked) target);
+                        hpEnemy -= target.getHP();
+                        if (hpEnemy == 0) {
+                            System.out.println("MISS!");
+                        } else {
+                            System.out.println("You did " + hpEnemy + " points of damage to " + target.toString());
+                        }
+                    }
+                    changePhase(new EndTurnPhase());
+                } else {
+                    System.out.println("Please choose a valid option.");
+                }
             }
+        }else{
+            throw new InvalidTransitionException("This transition is not allowed.");
         }
+
     }
 }

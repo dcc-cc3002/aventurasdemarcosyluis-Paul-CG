@@ -10,6 +10,7 @@ import AventurasdeMarcosyLuis.Items.Chest;
 import AventurasdeMarcosyLuis.Items.Consumable;
 import AventurasdeMarcosyLuis.Items.HoneySyrup;
 import AventurasdeMarcosyLuis.Items.RedMushroom;
+import AventurasdeMarcosyLuis.Phases.Exceptions.InvalidTargetException;
 import AventurasdeMarcosyLuis.Phases.Exceptions.InvalidTransitionException;
 import AventurasdeMarcosyLuis.Phases.LoadPhase;
 import AventurasdeMarcosyLuis.Phases.Phase;
@@ -27,10 +28,10 @@ import java.util.LinkedList;
  */
 public class GameController {
 
-    private LinkedList<Playable> players;
+    private final LinkedList<Playable> players;
     private LinkedList<Playable> alivePlayers;
-    private LinkedList<Playable> enemies;
-    private LinkedList<Playable> currentCharacters;
+    private final LinkedList<Playable> enemies;
+    private final LinkedList<Playable> currentCharacters;
     private Marcos marcos;
     private Luis luis;
     private Chest chest;
@@ -305,8 +306,8 @@ public class GameController {
     public void playerJumpAttacks(Heroic attacker, Wicked defender) {
         try{
             attacker.jump(defender);
-        } catch (Exception e){
-            System.out.println("Luis is too scared of Boo to attack him!");
+        } catch (InvalidTargetException e){
+            System.out.println(e.getMessage());
         }
     }
 
@@ -318,8 +319,8 @@ public class GameController {
     public void playerHammerAttacks(Heroic attacker, Wicked defender) {
         try {
             attacker.hammer(defender);
-        } catch (Exception e) {
-            System.out.println("Luis is too scared of Boo to attack him!");
+        } catch (InvalidTargetException e) {
+            System.out.println(e.getMessage());
         }
     }
 
@@ -329,7 +330,11 @@ public class GameController {
      * @param defender Hero defending
      */
     public void enemyAttack(Wicked attacker, Heroic defender) {
-        attacker.attack(defender);
+        try {
+            attacker.attack(defender);
+        } catch (InvalidTargetException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     /**
@@ -399,7 +404,7 @@ public class GameController {
     }
 
     /**
-     * This method increases the turn by 1
+     * This method increases the turn by one
      */
     public void nextTurn(){
         turn++;
@@ -438,7 +443,7 @@ public class GameController {
     }
 
     /**
-     * This method increases the number of Battles by 1
+     * This method increases the number of Battles by one
      */
     public void nextBattle(){
         numberOfBattles++;

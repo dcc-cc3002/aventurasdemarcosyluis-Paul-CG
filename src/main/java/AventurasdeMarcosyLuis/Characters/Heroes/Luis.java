@@ -26,8 +26,12 @@ public class Luis extends AbstractPlayers implements AttackableByBoo {
     }
 
     @Override
-    public void jump(Wicked enemy){
-        this.auxiliaryJump((AttackableByLuis) enemy);
+    public void jump(Wicked enemy) throws InvalidTargetException{
+        try {
+            this.auxiliaryJump((AttackableByLuis) enemy);
+        } catch (ClassCastException e) {
+            throw new InvalidTargetException("Luis is too scared to attack Boo!");
+        }
     }
 
     /**
@@ -41,8 +45,12 @@ public class Luis extends AbstractPlayers implements AttackableByBoo {
     }
 
     @Override
-    public void hammer(Wicked enemy){
-        this.auxiliaryHammer((AttackableByLuis) enemy);
+    public void hammer(Wicked enemy) throws InvalidTargetException{
+        try {
+            this.auxiliaryHammer((AttackableByLuis) enemy);
+        } catch (ClassCastException e) {
+            throw new InvalidTargetException("Luis is too scared to attack Boo!");
+        }
     }
 
     /**

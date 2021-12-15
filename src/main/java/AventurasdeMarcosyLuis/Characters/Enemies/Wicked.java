@@ -2,6 +2,7 @@ package AventurasdeMarcosyLuis.Characters.Enemies;
 
 import AventurasdeMarcosyLuis.Characters.Heroes.Heroic;
 import AventurasdeMarcosyLuis.Characters.Playable;
+import AventurasdeMarcosyLuis.Phases.Exceptions.InvalidTargetException;
 
 /**
  * Implements the attacks and defense of all Villains (or Enemies).
@@ -29,6 +30,6 @@ public interface Wicked extends Playable {
      * This method declares the attack method for all wicked characters
      * @param o objective of the attack
      */
-    void attack(Heroic o);
+    void attack(Heroic o) throws InvalidTargetException;
 
 }

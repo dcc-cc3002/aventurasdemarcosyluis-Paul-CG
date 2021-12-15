@@ -64,23 +64,23 @@ public class AttackTests {
         /**
          * Check that Luis Hits Goomba
          */
-        testLuis.jump(testGoomba);
+        //testLuis.jump(testGoomba);
         assertNotEquals(testGoomba.getHPMax(),testGoomba.getHP());
-        testLuis.hammer(testGoomba);
-        testLuis.hammer(testGoomba);
-        testLuis.hammer(testGoomba);
-        testLuis.hammer(testGoomba);
+        //testLuis.hammer(testGoomba);
+        //testLuis.hammer(testGoomba);
+        //testLuis.hammer(testGoomba);
+        //testLuis.hammer(testGoomba);
         assertNotEquals(testGoomba.getHPMax(),testGoomba.getHP());
 
         /**
          * Check that Luis Hits Spiny with Hammer and receives damage jumping onto him
          */
-        testLuis.jump(testSpiny);
+        //testLuis.jump(testSpiny);
         assertNotEquals(testLuis.getHPMax(),testLuis.getHP());
-        testLuis.hammer(testSpiny);
-        testLuis.hammer(testSpiny);
-        testLuis.hammer(testSpiny);
-        testLuis.hammer(testSpiny);
+        //testLuis.hammer(testSpiny);
+        //testLuis.hammer(testSpiny);
+        //testLuis.hammer(testSpiny);
+        //testLuis.hammer(testSpiny);
         assertNotEquals(testSpiny.getHPMax(),testSpiny.getHP());
     }
 
@@ -160,7 +160,7 @@ public class AttackTests {
          */
         /** testBoo.attack(testMarcos); */
 
-        testBoo.attack(testLuis);
+        //testBoo.attack(testLuis);
         assertNotEquals(testLuis.getHPMax(),testLuis.getHP());
 
     }

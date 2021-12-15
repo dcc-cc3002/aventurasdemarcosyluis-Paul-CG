@@ -1,6 +1,7 @@
 package AventurasdeMarcosyLuis.Phases;
 
 import AventurasdeMarcosyLuis.Characters.Playable;
+import AventurasdeMarcosyLuis.Phases.Exceptions.InvalidTransitionException;
 
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -10,9 +11,22 @@ import java.util.Scanner;
  */
 public class WaitItemPhase extends Phase{
     /**
-     * The constructor only needs a Scanner object to take the users preference
+     * The constructor only needs a Scanner object to take the user preference. Also, it allows transitions to WaitChoice
+     * and Item phases.
      */
     public WaitItemPhase(){
+        this.toLoad = false;
+        this.toBattleStart = false;
+        this.toWaitChoice = true;
+        this.toWaitAttack = false;
+        this.toWaitItem = false;
+        this.toAttack = false;
+        this.toItem = true;
+        this.toEnemyAttack = false;
+        this.toEndTurn = false;
+        this.toEndBattle = false;
+        this.toEndGame = false;
+
         reader = new Scanner(System.in);
     }
 
@@ -22,44 +36,49 @@ public class WaitItemPhase extends Phase{
     }
 
     @Override
-    public void toNextPhase(){
+    public void toNextPhase() throws InvalidTransitionException {
         LinkedList<Playable> heroes = controller.getPlayers();
         Playable target = null;
         String choice;
 
-        while(!controller.choiceIsHero(target)) {
-            int heroIndex = 1;
-            System.out.println("On which hero would you like to use an item?");
-            System.out.println("");
-            for(Playable hero : heroes) {
-                System.out.println(heroIndex + "- " + hero.toString());
-                System.out.println("--- HP: " + hero.getHP() + "/" + hero.getHPMax());
-                System.out.println("--- FP: " + hero.getFP() + "/" + hero.getFPMax());
+        if(toWaitChoice && toItem &&
+                !(toLoad && toBattleStart && toWaitAttack && toWaitItem && toAttack && toEnemyAttack && toEndTurn && toEndBattle && toEndGame)){
+
+            while(!controller.choiceIsHero(target)) {
+                int heroIndex = 1;
+                System.out.println("On which hero would you like to use an item?");
                 System.out.println("");
-                heroIndex += 1;
-            }
-            System.out.println(heroIndex + "- Back");
-            System.out.println("(Pick a number)");
-            choice = reader.nextLine();
-
-            try {
-                if(Integer.parseInt(choice) == heroIndex) {
-                    controller.decreaseActiveCharacterIndex();
-                    changePhase(new WaitChoicePhase());
-                    break;
+                for(Playable hero : heroes) {
+                    System.out.println(heroIndex + "- " + hero.toString());
+                    System.out.println("--- HP: " + hero.getHP() + "/" + hero.getHPMax());
+                    System.out.println("--- FP: " + hero.getFP() + "/" + hero.getFPMax());
+                    System.out.println("");
+                    heroIndex += 1;
                 }
-                target = heroes.get(Integer.parseInt(choice)-1);
-            } catch (NumberFormatException e){
-                System.out.println("Please choose a valid option.");
-                continue;
-            }
+                System.out.println(heroIndex + "- Back");
+                System.out.println("(Pick a number)");
+                choice = reader.nextLine();
 
-            if (controller.choiceIsHero(target)) {
-                changePhase(new ItemPhase(Integer.parseInt(choice)-1));
-            } else {
-                System.out.println("Please choose a valid option.");
+                try {
+                    if(Integer.parseInt(choice) == heroIndex) {
+                        controller.decreaseActiveCharacterIndex();
+                        changePhase(new WaitChoicePhase());
+                        break;
+                    }
+                    target = heroes.get(Integer.parseInt(choice)-1);
+                } catch (NumberFormatException e){
+                    System.out.println("Please choose a valid option.");
+                    continue;
+                }
+
+                if (controller.choiceIsHero(target)) {
+                    changePhase(new ItemPhase(Integer.parseInt(choice)-1));
+                } else {
+                    System.out.println("Please choose a valid option.");
+                }
             }
+        }else{
+            throw new InvalidTransitionException("This transition is not allowed.");
         }
-
     }
 }

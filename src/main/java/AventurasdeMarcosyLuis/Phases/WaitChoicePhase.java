@@ -1,5 +1,7 @@
 package AventurasdeMarcosyLuis.Phases;
 
+import AventurasdeMarcosyLuis.Phases.Exceptions.InvalidTransitionException;
+
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -8,15 +10,22 @@ import java.util.Scanner;
  * the currentCharacter
  */
 public class WaitChoicePhase extends Phase{
+    /**
+     * The constructor initializes a Scanner object to take inputs from users. Also, it allows transitions to WaitAttack
+     * WaitItem, EndTurn and EnemyAttack phases.
+     */
     public WaitChoicePhase(){
-        this.canIStart = false;
-        this.canIAttack = false;
-        this.canIUseItem = false;
-        this.canIPass = false;
-        this.canISelectEnemy = false;
-        this.canISelectItem = false;
-        this.isEnemyTurn = false;
-        this.invalidTarget = false;
+        this.toLoad = false;
+        this.toBattleStart = false;
+        this.toWaitChoice = false;
+        this.toWaitAttack = true;
+        this.toWaitItem = true;
+        this.toAttack = false;
+        this.toItem = false;
+        this.toEnemyAttack = true;
+        this.toEndTurn = true;
+        this.toEndBattle = false;
+        this.toEndGame = false;
 
         reader = new Scanner(System.in);
     }
@@ -27,37 +36,43 @@ public class WaitChoicePhase extends Phase{
     }
 
     @Override
-    public void toNextPhase(){
+    public void toNextPhase() throws InvalidTransitionException {
         String choice = "0";
-        controller.getNextCharacter();
 
-        System.out.println("Current Characters on the Battlefield:");
-        System.out.println(controller.getCurrentCharacters());
+        if(toWaitAttack && toWaitItem && toEnemyAttack && toEndTurn &&
+                !(toLoad && toBattleStart && toWaitChoice && toAttack && toItem && toEndBattle && toEndGame)){
+            controller.getNextCharacter();
 
-        System.out.println("------------------------------------------------------------");
-        System.out.println("Battle # "+ controller.getNumberOfBattles() + " Turn # " + controller.getTurn());
+            System.out.println("Current Characters on the Battlefield:");
+            System.out.println(controller.getCurrentCharacters());
 
-        if (controller.currentCharacterIsHero()) {
-            while(!Objects.equals(choice, "1") && !Objects.equals(choice, "2") && !Objects.equals(choice, "3")) {
-                System.out.println("What should " + controller.getCurrentCharacter().toString() + " do?");
-                System.out.println("1- Attack");
-                System.out.println("2- Use Item");
-                System.out.println("3- Pass");
-                System.out.println("(Pick a number)");
-                choice = reader.nextLine();
+            System.out.println("------------------------------------------------------------");
+            System.out.println("Battle # "+ controller.getNumberOfBattles() + " Turn # " + controller.getTurn());
 
-                if (Objects.equals(choice, "1")){
-                    changePhase(new WaitAttackPhase());
-                } else if (Objects.equals(choice, "2")){
-                    changePhase(new WaitItemPhase());
-                } else if (Objects.equals(choice, "3")){
-                    changePhase(new EndTurnPhase());
-                } else {
-                    System.out.println("Please choose a valid option.");
+            if (controller.currentCharacterIsHero()) {
+                while(!Objects.equals(choice, "1") && !Objects.equals(choice, "2") && !Objects.equals(choice, "3")) {
+                    System.out.println("What should " + controller.getCurrentCharacter().toString() + " do?");
+                    System.out.println("1- Attack");
+                    System.out.println("2- Use Item");
+                    System.out.println("3- Pass");
+                    System.out.println("(Pick a number)");
+                    choice = reader.nextLine();
+
+                    if (Objects.equals(choice, "1")){
+                        changePhase(new WaitAttackPhase());
+                    } else if (Objects.equals(choice, "2")){
+                        changePhase(new WaitItemPhase());
+                    } else if (Objects.equals(choice, "3")){
+                        changePhase(new EndTurnPhase());
+                    } else {
+                        System.out.println("Please choose a valid option.");
+                    }
                 }
+            } else {
+                changePhase(new EnemyAttackPhase());
             }
-        } else {
-            changePhase(new EnemyAttackPhase());
+        }else{
+            throw new InvalidTransitionException("This transition is not allowed.");
         }
     }
 }
