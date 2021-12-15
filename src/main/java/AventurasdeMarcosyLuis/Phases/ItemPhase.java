@@ -2,6 +2,7 @@ package AventurasdeMarcosyLuis.Phases;
 
 import AventurasdeMarcosyLuis.Characters.Playable;
 import AventurasdeMarcosyLuis.Items.Consumable;
+import AventurasdeMarcosyLuis.Phases.Exceptions.InvalidChoiceException;
 import AventurasdeMarcosyLuis.Phases.Exceptions.InvalidTransitionException;
 
 import java.util.LinkedList;
@@ -39,7 +40,7 @@ public class ItemPhase extends Phase{
     }
 
     @Override
-    public void toNextPhase() throws InvalidTransitionException {
+    public void toNextPhase() throws InvalidTransitionException, InvalidChoiceException {
         LinkedList<Consumable> items =  controller.getListItems();
         Consumable option = null;
         Playable player = controller.getPlayers().get(heroIndex);
@@ -65,15 +66,14 @@ public class ItemPhase extends Phase{
                     }
                     option = items.get(Integer.parseInt(choice)-1);
                 } catch (NumberFormatException e){
-                    System.out.println("Please choose a valid option.");
-                    continue;
+                    throw new InvalidChoiceException("Please choose a valid option");
                 }
 
                 if (controller.choiceIsItem(option)) {
                     controller.useItem(player, option);
                     changePhase(new EndTurnPhase());
                 } else {
-                    System.out.println("Please choose a valid option.");
+                    throw new InvalidChoiceException("Please choose a valid option");
                 }
             }
         }else{

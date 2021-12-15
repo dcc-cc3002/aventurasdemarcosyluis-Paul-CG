@@ -48,9 +48,70 @@ catch that error on the last version and prompt a message to the player telling 
 that Luis is too afraid to attack Boo.
 
 ## Version 1.0
+This is the final version of the game, we didn't implement visual elements. Tu run the game
+simply run the main class. All interactions are made through the console using numbers.
 
 ### Fixes
-#### Visitor Pattern
-We reworked the attack calls in the controller to a Visitor Pattern. This way it is 
-extensible and avoids using casts.
+We included the comment of the last review and also, corrected a few bugs.
 
+### Phases
+To handle the flow of the game, we are using a State Pattern to keep track of the moment
+of the game that we are in. For this purpose, we defined several phases which are described
+below.
+
+#### Load Phase
+Here, we load Players and Items.
+
+#### BattleStart Phase
+BattleStart creates enemies for each new battle.
+
+#### WaitChoice Phase
+This is the first phase where the user interacts, she can choose between: Attack, Use Item
+or Pass. The first choice leads to WaitAttack, the second to WaitItem and the third to
+EndTurn.
+
+#### WaitAttack Phase
+On WaitAttack, the user chooses between attack types.
+
+#### Attack Phase
+Finally, with the type of attack ready, the user chooses an enemy.
+
+#### WaitItem Phase
+Here, the user chooses a player on which apply an item.
+
+#### Item Phase
+On the Item Phase, the user chooses an item to use.
+
+#### EnemyAttack Phase
+There is no interaction on this phase. Here, an enemy attacks randomly between the players
+that are still alive.
+
+#### EndTurn Phase
+EndTurn removes the dead characters from the battle and checks if the conditions for
+winning or losing a battle are met. If they are, it leads to EndBattle, if they don't
+then it leads to WaitChoice for another turn.
+
+#### EndBattle Phase
+After finishing a battle, EndBattle checks if the players won, lost or are still playing.
+In the first and second case it leads to EndGame. On the last scenario, it goes to
+BattleStart to commence another battle.
+
+#### EndGame Phase
+This, the last phase, congratulates or pities the player for winning or losing.
+
+#### Diagram of phases
+![alt text](phasesDiagram.png)
+
+### Exceptions
+For this game we created three custom Exceptions:
+
+#### InvalidChoice Exception
+If an input is invalid, this exception is raised asking for a valid one.
+
+#### InvalidTarget Exception
+There are some constrains on which enemies and players can be attacked. If such constrains
+are violated, this exception is raised. The player or enemy will lose its turn.
+
+#### InvalidTransition Exception
+Even though the flow of the game is restricted by its construction, this exception protects
+the game from code injections that could force a change of phase that is not allowed.

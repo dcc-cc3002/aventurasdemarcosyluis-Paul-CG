@@ -1,6 +1,7 @@
 package AventurasdeMarcosyLuis.Phases;
 
 import AventurasdeMarcosyLuis.Controllers.GameController;
+import AventurasdeMarcosyLuis.Phases.Exceptions.InvalidChoiceException;
 import AventurasdeMarcosyLuis.Phases.Exceptions.InvalidTransitionException;
 
 import java.util.Scanner;
@@ -69,7 +70,7 @@ public class Phase {
      * This method guides the flow of the game. It behaves accordingly to the phase that is currently active.
      * @throws InvalidTransitionException in case of a transition that is not allowed
      */
-    public void toNextPhase() throws InvalidTransitionException {
+    public void toNextPhase() throws InvalidTransitionException, InvalidChoiceException {
         throw new InvalidTransitionException("This transition is not allowed.");
     }
 

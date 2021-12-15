@@ -1,5 +1,6 @@
 package AventurasdeMarcosyLuis.Phases;
 
+import AventurasdeMarcosyLuis.Phases.Exceptions.InvalidChoiceException;
 import AventurasdeMarcosyLuis.Phases.Exceptions.InvalidTransitionException;
 
 import java.util.Objects;
@@ -33,7 +34,7 @@ public class WaitAttackPhase extends Phase{
     }
 
     @Override
-    public void toNextPhase() throws InvalidTransitionException {
+    public void toNextPhase() throws InvalidTransitionException, InvalidChoiceException {
         String choice = "0";
 
         if(toWaitChoice && toAttack &&
@@ -54,7 +55,7 @@ public class WaitAttackPhase extends Phase{
                     controller.decreaseActiveCharacterIndex();
                     changePhase(new WaitChoicePhase());
                 } else {
-                    System.out.println("Please choose a valid option.");
+                    throw new InvalidChoiceException("Please choose a valid option");
                 }
             }
         }else{

@@ -10,6 +10,7 @@ import AventurasdeMarcosyLuis.Items.Chest;
 import AventurasdeMarcosyLuis.Items.Consumable;
 import AventurasdeMarcosyLuis.Items.HoneySyrup;
 import AventurasdeMarcosyLuis.Items.RedMushroom;
+import AventurasdeMarcosyLuis.Phases.Exceptions.InvalidChoiceException;
 import AventurasdeMarcosyLuis.Phases.Exceptions.InvalidTargetException;
 import AventurasdeMarcosyLuis.Phases.Exceptions.InvalidTransitionException;
 import AventurasdeMarcosyLuis.Phases.LoadPhase;
@@ -400,6 +401,8 @@ public class GameController {
             phase.toNextPhase();
         } catch (InvalidTransitionException e){
             e.printStackTrace();
+        } catch (InvalidChoiceException e) {
+            System.out.println(e.getMessage());
         }
     }
 
