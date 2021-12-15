@@ -38,11 +38,13 @@ public class EnemyAttackPhase extends Phase{
         boolean hit = false;
         int hpHero;
 
+        // We check for the conditions to complete the transition
         if(toEndTurn &&
                 !(toLoad && toBattleStart && toWaitAttack && toWaitItem && toAttack && toItem && toEnemyAttack && toWaitChoice && toEndBattle && toEndGame)){
 
             System.out.println(controller.getCurrentCharacter() + " is attacking!");
 
+            // The enemy attacks a player randomly (we consider only the heroes that are still alive)
             while(!hit){
                 int target = rand.nextInt(controller.getAlivePlayers().size());
                 hpHero = controller.getAlivePlayers().get(target).getHP();
@@ -53,7 +55,7 @@ public class EnemyAttackPhase extends Phase{
                     System.out.println(controller.getAlivePlayers().get(target) + " got " + hpHero + " points of damage!");
                     changePhase(new EndTurnPhase());
                 } catch (NumberFormatException e) {
-                    continue;
+                    continue; // Ignore this warning, this piece of code is importante
                 }
             }
         }else{

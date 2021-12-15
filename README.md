@@ -100,7 +100,7 @@ BattleStart to commence another battle.
 This, the last phase, congratulates or pities the player for winning or losing.
 
 #### Diagram of phases
-![Screenshot](phasesDiagram.png)
+![image info](https://github.com/CC3002-Metodologias/aventurasdemarcosyluis-Paul-CG/blob/Tarea3/phasesDiagram.PNG)
 
 ### Exceptions
 For this game we created three custom Exceptions:
@@ -115,3 +115,8 @@ are violated, this exception is raised. The player or enemy will lose its turn.
 #### InvalidTransition Exception
 Even though the flow of the game is restricted by its construction, this exception protects
 the game from code injections that could force a change of phase that is not allowed.
+
+### Coverage
+The coverage is below the required value, because we need inputs to traverse all the 
+toNextPhase() methods of the Phases. The game has been fully tested and the
+mechanics are OK.

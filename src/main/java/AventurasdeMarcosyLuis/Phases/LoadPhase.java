@@ -30,10 +30,13 @@ public class LoadPhase extends Phase{
 
     @Override
     public void toNextPhase() throws InvalidTransitionException {
+        // We check for the conditions to complete the transition
         if(toBattleStart &&
                 !(toLoad && toWaitChoice && toWaitAttack && toWaitItem && toAttack && toItem && toEnemyAttack && toEndTurn && toEndBattle && toEndGame)){
+            // Load all fixed objects
             controller.loadGame();
             System.out.println("Loading....");
+            // Change Phase
             changePhase(new BattleStartPhase());
             System.out.println("The battleground is ready, brace yourself!");
         }else{

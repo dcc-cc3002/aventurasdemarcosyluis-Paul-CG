@@ -154,4 +154,13 @@ public class BasicTests {
         assertEquals((int) (DEF*factorLvlUp), testMarcos.getDEF());
     }
 
+    @Test
+    public void toStringTest(){
+        assertEquals("Marcos", testMarcos.toString());
+        assertEquals("Luis", testLuis.toString());
+        assertEquals("Goomba", testGoomba.toString());
+        assertEquals("Spiny", testSpiny.toString());
+        assertEquals("Boo", testBoo.toString());
+    }
+
 }

@@ -1,5 +1,6 @@
 package AventurasdeMarcosyLuis;
 
+import AventurasdeMarcosyLuis.Characters.Enemies.Boo;
 import AventurasdeMarcosyLuis.Characters.Enemies.Goomba;
 import AventurasdeMarcosyLuis.Characters.Enemies.Wicked;
 import AventurasdeMarcosyLuis.Characters.Heroes.Heroic;
@@ -30,14 +31,10 @@ public class ControllerTests {
         listAux = new LinkedList();
         map = new HashMap();
 
-        controller.createChest();
-        controller.createRedMushroom();
-        controller.createHoneySyrup();
-        controller.stockChest(3);
-
-        controller.initializePlayers();
+        controller.loadGame();
         controller.initializeEnemies(4);
         controller.formCurrentCharactersListBattle();
+        controller.formCurrentCharactersListTurn();
     }
 
     @Test
@@ -76,6 +73,10 @@ public class ControllerTests {
         controller.playerJumpAttacks((Heroic) character, (Wicked) enemy);
 
         assertNotEquals(enemy.getHPMax(),enemy.getHP());
+
+        character = controller.getPlayers().get(0);
+        enemy = new Boo(2, 10, 8, 50, 10);
+        controller.playerJumpAttacks((Heroic) character, (Wicked) enemy);
     }
 
     @Test
@@ -91,6 +92,10 @@ public class ControllerTests {
         controller.playerHammerAttacks((Heroic) character, (Wicked) enemy);
 
         assertNotEquals(enemy.getHPMax(),enemy.getHP());
+
+        character = controller.getPlayers().get(0);
+        enemy = new Boo(2, 10, 8, 50, 10);
+        controller.playerHammerAttacks((Heroic) character, (Wicked) enemy);
     }
 
     @Test
@@ -101,6 +106,12 @@ public class ControllerTests {
         controller.enemyAttack((Wicked) enemy, (Heroic) character);
 
         assertNotEquals(character.getHPMax(),character.getHP());
+
+        character = controller.getPlayers().get(0);
+        enemy = new Boo(2, 10, 8, 50, 10);
+        controller.enemyAttack((Wicked) enemy, (Heroic) character);
+        controller.playerJumpAttacks((Heroic) character, (Wicked) enemy);
+
     }
 
     @Test
@@ -146,11 +157,12 @@ public class ControllerTests {
 
     @Test
     public void getNextCharacterTest() {
-        controller.setTurn(2);
         character = controller.getNextCharacter();
+        character = controller.getNextCharacter();
+        character = controller.getNextCharacter();
+        System.out.println(controller.getCurrentCharacters());
         assertEquals(controller.getCurrentCharacters().get(2), character);
 
-        controller.setTurn(9);
         character = controller.getNextCharacter();
         assertEquals(controller.getCurrentCharacters().get(3), character);
     }
@@ -165,12 +177,12 @@ public class ControllerTests {
     @Test
     public void chestUsageTest() {
         character = controller.getPlayers().get(0);
-        character.setHP(45);
+        character.setHP(character.getHP()-5);
         listOfItems = controller.getListItems();
-        System.out.println(listOfItems.get(1));
+        controller.useItem(character, listOfItems.get(0));
         controller.useItem(character, listOfItems.get(1));
-        assertEquals(50,character.getHP());
-        assertEquals(2, controller.getHowManyItems(listOfItems.get(1)));
+        assertEquals(character.getHPMax(),character.getHP());
+        assertEquals(2, controller.getHowManyItems(listOfItems.get(0)));
     }
 
     @Test
@@ -193,5 +205,67 @@ public class ControllerTests {
         assertEquals(4,controller.getHowManyItems(listOfItems.get(0)));
     }
 
+    @Test
+    public void getCurrentCharacterTest(){
+        controller.getNextCharacter();
+        character = controller.getCurrentCharacter();
+        assertEquals("Marcos",character.toString());
+    }
 
+    @Test
+    public void getAlivePlayersTest(){
+        listAux = controller.getAlivePlayers();
+        assertEquals("Marcos",listAux.get(0).toString());
+        assertEquals("Luis",listAux.get(1).toString());
+    }
+
+    @Test
+    public void currentCharacterIsHeroTest(){
+        controller.getNextCharacter();
+        assertTrue(controller.currentCharacterIsHero());
+        controller.getNextCharacter();
+        controller.getNextCharacter();
+        assertFalse(controller.currentCharacterIsHero());
+    }
+
+    @Test
+    public void choiceTest() {
+        controller.getNextCharacter();
+        character = controller.getCurrentCharacter();
+
+        assertTrue(controller.choiceIsHero(character));
+        assertFalse(controller.choiceIsEnemy(character));
+
+        controller.getNextCharacter();
+        controller.getNextCharacter();
+        character = controller.getCurrentCharacter();
+
+        assertFalse(controller.choiceIsHero(character));
+        assertTrue(controller.choiceIsEnemy(character));
+
+        assertTrue(controller.choiceIsItem(controller.getListItems().get(0)));
+    }
+
+    @Test
+    public void turnTest(){
+        int turn = controller.getTurn();
+        controller.nextTurn();
+
+        assertEquals(turn+1, controller.getTurn());
+
+        controller.setTurn(10);
+        assertEquals(10, controller.getTurn());
+    }
+
+    @Test
+    public void endOfGameTest(){
+        controller.setEndOfGame(true);
+        assertTrue(controller.getEndOfGame());
+    }
+
+    @Test
+    public void numberOfBattleTest(){
+        controller.nextBattle();
+        assertEquals(2,controller.getNumberOfBattles());
+    }
 }

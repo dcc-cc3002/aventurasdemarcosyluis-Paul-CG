@@ -41,10 +41,11 @@ public class WaitItemPhase extends Phase{
         LinkedList<Playable> heroes = controller.getPlayers();
         Playable target = null;
         String choice;
-
+        // We check for the conditions to complete the transition
         if(toWaitChoice && toItem &&
                 !(toLoad && toBattleStart && toWaitAttack && toWaitItem && toAttack && toEnemyAttack && toEndTurn && toEndBattle && toEndGame)){
 
+            // We choose a hero as a target and move to the Item Phase (or back)
             while(!controller.choiceIsHero(target)) {
                 int heroIndex = 1;
                 System.out.println("On which hero would you like to use an item?");

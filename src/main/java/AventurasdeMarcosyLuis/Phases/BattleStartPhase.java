@@ -30,24 +30,26 @@ public class BattleStartPhase extends Phase{
 
     @Override
     public void toNextPhase() throws InvalidTransitionException {
+        // We check for the conditions to complete the transition
         if(toWaitChoice &&
                 !(toLoad && toBattleStart && toWaitAttack && toWaitItem && toAttack && toItem && toEnemyAttack && toEndTurn && toEndBattle && toEndGame)){
             int numberOfEnemies = 1;
+            // Define the number of enemies to confront on the next Battle
             switch (controller.getNumberOfBattles()) {
                 case 1, 2 -> numberOfEnemies = 3;
                 case 3, 4 -> numberOfEnemies = 5;
                 case 5 -> numberOfEnemies = 6;
             }
-            controller.setTurn(0);
-            controller.initializeEnemies(numberOfEnemies);
-            controller.formCurrentCharactersListBattle();
+            controller.setTurn(0); // Initialize de number of turns
+            controller.initializeEnemies(numberOfEnemies); // Initialize enemies
+            controller.formCurrentCharactersListBattle(); // Create the master list of the battle
             System.out.println("------------------------------------------------------------");
             System.out.println("------------------A New Battle has begun!!------------------");
             System.out.println("------------------------------------------------------------");
             System.out.println("New enemies have arrived!!!");
-            changePhase(new WaitChoicePhase());
-        } else {throw new InvalidTransitionException("This transition is not allowed.");
-
+            changePhase(new WaitChoicePhase()); // Change the phase
+        } else {
+            throw new InvalidTransitionException("This transition is not allowed.");
         }
     }
 }

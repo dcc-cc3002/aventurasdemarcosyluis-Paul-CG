@@ -33,7 +33,9 @@ public class EndGamePhase extends Phase{
 
     @Override
     public void toNextPhase() {
+        // We let know the main function that the game ended
         controller.setEndOfGame(true);
+        // We show messages for winning and losing
         if(win){
             System.out.println("Congratulations! You fought hard and prevailed.");
             System.out.println("Countess Pitch is finally safe.");

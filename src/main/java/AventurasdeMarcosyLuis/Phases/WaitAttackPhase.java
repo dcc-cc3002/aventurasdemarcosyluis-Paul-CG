@@ -37,8 +37,10 @@ public class WaitAttackPhase extends Phase{
     public void toNextPhase() throws InvalidTransitionException, InvalidChoiceException {
         String choice = "0";
 
+        // We check for the conditions to complete the transition
         if(toWaitChoice && toAttack &&
                 !(toLoad && toBattleStart && toWaitAttack && toWaitItem && toItem && toEnemyAttack && toEndTurn && toEndBattle && toEndGame)){
+            // We display the attack options and move to the Attack Phase (or back to the WaitChoice phase)
             while(!Objects.equals(choice, "1") && !Objects.equals(choice, "2") && !Objects.equals(choice, "3")){
                 System.out.println("Choose an attack to destroy your enemies!!");
                 System.out.println("1- Jump   - 1 FP");

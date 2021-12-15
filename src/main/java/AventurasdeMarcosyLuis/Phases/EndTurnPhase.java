@@ -32,9 +32,10 @@ public class EndTurnPhase extends Phase{
     @Override
     public void toNextPhase() throws InvalidTransitionException {
 
+        // We check for the conditions to complete the transition
         if(toEndBattle && toWaitChoice &&
                 !(toLoad && toBattleStart && toWaitAttack && toWaitItem && toAttack && toItem && toEnemyAttack && toEndTurn && toEndGame)){
-
+            // As the turn is finished, we remove the dead and reestablish the master character list
             controller.removeDead();
             controller.formCurrentCharactersListTurn();
             if (controller.didILose() || controller.didIWin()) {

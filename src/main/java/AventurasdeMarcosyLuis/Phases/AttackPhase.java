@@ -3,6 +3,7 @@ package AventurasdeMarcosyLuis.Phases;
 import AventurasdeMarcosyLuis.Characters.Enemies.Wicked;
 import AventurasdeMarcosyLuis.Characters.Heroes.Heroic;
 import AventurasdeMarcosyLuis.Characters.Playable;
+import AventurasdeMarcosyLuis.Phases.Exceptions.InvalidChoiceException;
 import AventurasdeMarcosyLuis.Phases.Exceptions.InvalidTransitionException;
 
 import java.util.LinkedList;
@@ -41,15 +42,17 @@ public class AttackPhase extends Phase{
     }
 
     @Override
-    public void toNextPhase() throws InvalidTransitionException {
+    public void toNextPhase() throws InvalidTransitionException, InvalidChoiceException {
         String choice;
         Playable target = null;
         LinkedList<Playable> enemies = controller.getEnemies();
         int hpEnemy;
         int hpHero;
 
+        // We check for the conditions to complete the transition
         if(toEndTurn && toWaitAttack &&
                 !(toLoad && toBattleStart && toWaitChoice && toWaitItem && toAttack && toItem && toEnemyAttack && toEndBattle && toEndGame)){
+            // We show all enemies and pick one to attack (or go back to the Attack Phase)
             while(!controller.choiceIsEnemy(target)){
                 int enemyIndex = 1;
                 for(Playable enemy : enemies) {
@@ -60,7 +63,6 @@ public class AttackPhase extends Phase{
                 System.out.println("(Pick a number)");
                 choice = reader.nextLine();
 
-
                 try {
                     if(Integer.parseInt(choice) == enemyIndex) {
                         changePhase(new WaitAttackPhase());
@@ -68,10 +70,10 @@ public class AttackPhase extends Phase{
                     }
                     target = enemies.get(Integer.parseInt(choice)-1);
                 } catch (NumberFormatException e){
-                    System.out.println("Please choose a valid option.");
-                    continue;
+                    throw new InvalidChoiceException("Please choose a valid option");
                 }
 
+                // If the target is a valid enemy we resolve the attack
                 if (controller.choiceIsEnemy(target)){
                     hpEnemy = target.getHP();
                     hpHero = controller.getCurrentCharacter().getHP();
@@ -96,7 +98,7 @@ public class AttackPhase extends Phase{
                     }
                     changePhase(new EndTurnPhase());
                 } else {
-                    System.out.println("Please choose a valid option.");
+                    throw new InvalidChoiceException("Please choose a valid option");
                 }
             }
         }else{

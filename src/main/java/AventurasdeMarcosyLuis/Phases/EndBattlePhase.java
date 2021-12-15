@@ -32,13 +32,15 @@ public class EndBattlePhase extends Phase{
     @Override
     public void toNextPhase() throws InvalidTransitionException {
 
+        // We check for the conditions to complete the transition
         if(toEndGame && toBattleStart &&
                 !(toLoad && toEndTurn && toWaitAttack && toWaitItem && toAttack && toItem && toEnemyAttack && toWaitChoice && toEndBattle)){
 
+            // If the heroes lost the last battle, we transition to the EndGame phase
             if (controller.didILose()) {
                 System.out.println("Marcos and Luis have fainted.");
                 changePhase(new EndGamePhase(false));
-            } else if (controller.didIWin()){
+            } else if (controller.didIWin()){ // If they won, we check if it is the last battle and move to the correct phase
                 System.out.println("You won this Battle! Well done! :D");
                 controller.endBattle();
                 controller.nextBattle();

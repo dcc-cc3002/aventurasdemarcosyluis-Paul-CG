@@ -45,10 +45,10 @@ public class ItemPhase extends Phase{
         Consumable option = null;
         Playable player = controller.getPlayers().get(heroIndex);
         String choice;
-
+        // We check for the conditions to complete the transition
         if(toEndTurn && toWaitItem &&
                 !(toLoad && toBattleStart && toWaitAttack && toWaitChoice && toAttack && toItem && toEnemyAttack && toEndBattle && toEndGame)){
-
+            // We show the items and quantity in the chest, and pick one (or go back)
             while(!controller.choiceIsItem(option)){
                 int itemIndex = 1;
                 for (Consumable item : items){

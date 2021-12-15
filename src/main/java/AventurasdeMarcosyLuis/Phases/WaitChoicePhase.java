@@ -39,17 +39,18 @@ public class WaitChoicePhase extends Phase{
     @Override
     public void toNextPhase() throws InvalidTransitionException, InvalidChoiceException {
         String choice = "0";
-
+        // We check for the conditions to complete the transition
         if(toWaitAttack && toWaitItem && toEnemyAttack && toEndTurn &&
                 !(toLoad && toBattleStart && toWaitChoice && toAttack && toItem && toEndBattle && toEndGame)){
             controller.getNextCharacter();
 
             System.out.println("Current Characters on the Battlefield:");
-            System.out.println(controller.getCurrentCharacters());
+            System.out.println(controller.getCurrentCharacters()); // Print current character
 
             System.out.println("------------------------------------------------------------");
-            System.out.println("Battle # "+ controller.getNumberOfBattles() + " Turn # " + controller.getTurn());
+            System.out.println("Battle # "+ controller.getNumberOfBattles() + " Turn # " + controller.getTurn()); // Print header
 
+            // If the current character is a hero, we can choose the next actions
             if (controller.currentCharacterIsHero()) {
                 while(!Objects.equals(choice, "1") && !Objects.equals(choice, "2") && !Objects.equals(choice, "3")) {
                     System.out.println("What should " + controller.getCurrentCharacter().toString() + " do?");
@@ -59,6 +60,7 @@ public class WaitChoicePhase extends Phase{
                     System.out.println("(Pick a number)");
                     choice = reader.nextLine();
 
+                    // Depending on the choice, we move to the next phase
                     if (Objects.equals(choice, "1")){
                         changePhase(new WaitAttackPhase());
                     } else if (Objects.equals(choice, "2")){
@@ -70,6 +72,7 @@ public class WaitChoicePhase extends Phase{
                     }
                 }
             } else {
+                // If the current character is an enemy, we move to the EnemyAttack Phase
                 changePhase(new EnemyAttackPhase());
             }
         }else{

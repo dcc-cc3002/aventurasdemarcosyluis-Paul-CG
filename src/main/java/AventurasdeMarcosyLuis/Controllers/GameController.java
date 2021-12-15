@@ -89,6 +89,8 @@ public class GameController {
      */
     public void formCurrentCharactersListBattle(){
         currentCharacters.clear();
+        alivePlayers.clear();
+        alivePlayers =  new LinkedList<>(players);
         currentCharacters.addAll(players);
         currentCharacters.addAll(enemies);
     }
@@ -404,6 +406,14 @@ public class GameController {
         } catch (InvalidChoiceException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    /**
+     * Gets the name of the phase, used for testing purposes
+     * @return phase name
+     */
+    public String getPhaseName(){
+        return phase.toString();
     }
 
     /**

@@ -5,8 +5,10 @@ import AventurasdeMarcosyLuis.Characters.Heroes.Marcos;
 import AventurasdeMarcosyLuis.Characters.Enemies.Boo;
 import AventurasdeMarcosyLuis.Characters.Enemies.Goomba;
 import AventurasdeMarcosyLuis.Characters.Enemies.Spiny;
+import AventurasdeMarcosyLuis.Phases.Exceptions.InvalidTargetException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import java.lang.Math;
 import java.util.Random;
 
@@ -64,24 +66,45 @@ public class AttackTests {
         /**
          * Check that Luis Hits Goomba
          */
-        //testLuis.jump(testGoomba);
-        assertNotEquals(testGoomba.getHPMax(),testGoomba.getHP());
-        //testLuis.hammer(testGoomba);
-        //testLuis.hammer(testGoomba);
-        //testLuis.hammer(testGoomba);
-        //testLuis.hammer(testGoomba);
-        assertNotEquals(testGoomba.getHPMax(),testGoomba.getHP());
+        try{
+            testLuis.jump(testGoomba);
+            assertNotEquals(testGoomba.getHPMax(),testGoomba.getHP());
+            testLuis.hammer(testGoomba);
+            testLuis.hammer(testGoomba);
+            testLuis.hammer(testGoomba);
+            testLuis.hammer(testGoomba);
+            assertNotEquals(testGoomba.getHPMax(),testGoomba.getHP());
+        } catch (InvalidTargetException e){
+            assertTrue(false);
+        }
 
         /**
          * Check that Luis Hits Spiny with Hammer and receives damage jumping onto him
          */
-        //testLuis.jump(testSpiny);
-        assertNotEquals(testLuis.getHPMax(),testLuis.getHP());
-        //testLuis.hammer(testSpiny);
-        //testLuis.hammer(testSpiny);
-        //testLuis.hammer(testSpiny);
-        //testLuis.hammer(testSpiny);
-        assertNotEquals(testSpiny.getHPMax(),testSpiny.getHP());
+        try{
+            testLuis.jump(testSpiny);
+            assertNotEquals(testLuis.getHPMax(),testLuis.getHP());
+            testLuis.hammer(testSpiny);
+            testLuis.hammer(testSpiny);
+            testLuis.hammer(testSpiny);
+            testLuis.hammer(testSpiny);
+            assertNotEquals(testSpiny.getHPMax(),testSpiny.getHP());
+        } catch (InvalidTargetException e) {
+            assertTrue(false);
+        }
+
+        try{
+            testLuis.jump(testBoo);
+        } catch (InvalidTargetException e){
+            assertTrue(true);
+        }
+
+        try{
+            testLuis.hammer(testBoo);
+        } catch (InvalidTargetException e){
+            assertTrue(true);
+        }
+
     }
 
     @Test
@@ -155,12 +178,14 @@ public class AttackTests {
 
     @Test
     public void booAttackTest(){
-        /**
-         * Check that Boo can't attack Marcos (commented)
-         */
-        /** testBoo.attack(testMarcos); */
 
-        //testBoo.attack(testLuis);
+        try{
+            testBoo.attack(testLuis);
+            testBoo.attack(testMarcos);
+        } catch (InvalidTargetException e){
+            assertEquals(testMarcos.getHPMax(),testMarcos.getHP());
+        }
+
         assertNotEquals(testLuis.getHPMax(),testLuis.getHP());
 
     }
