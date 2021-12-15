@@ -75,9 +75,9 @@ public class WickedFactory {
      */
     public Playable create() {
         double randomNumber = Math.random();
-        if (randomNumber < 0.55) {
+        if (randomNumber < 0.45) {
             return new Goomba(LVL, ATK, DEF, HPMax, FPMax);
-        } else if (randomNumber < 0.6) {
+        } else if (randomNumber < 0.8) {
             return new Spiny(LVL, ATK, DEF, HPMax, FPMax);
         } else {
             return new Boo(LVL, ATK, DEF, HPMax, FPMax);
