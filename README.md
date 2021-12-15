@@ -100,7 +100,7 @@ BattleStart to commence another battle.
 This, the last phase, congratulates or pities the player for winning or losing.
 
 #### Diagram of phases
-![Screenshot](phasesDiagram.png)
+![image info](phasesDiagram.png)
 
 ### Exceptions
 For this game we created three custom Exceptions:
