@@ -2,6 +2,7 @@ package AventurasdeMarcosyLuis.Characters.Heroes;
 
 import AventurasdeMarcosyLuis.Characters.AbstractCharacter;
 import AventurasdeMarcosyLuis.Characters.Enemies.Wicked;
+import AventurasdeMarcosyLuis.Phases.Exceptions.InvalidTargetException;
 
 /**
  * Players Extends Character, it represents the main characters of the game.
@@ -24,10 +25,10 @@ public abstract class AbstractPlayers extends AbstractCharacter implements Heroi
     }
 
     @Override
-    public void jump(Wicked o) {    }
+    public void jump(Wicked enemy) throws InvalidTargetException {    }
 
     @Override
-    public void hammer(Wicked o) {    }
+    public void hammer(Wicked enemy) throws InvalidTargetException {    }
 }
 
 

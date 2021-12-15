@@ -27,4 +27,9 @@ public class RedMushroom extends AbstractItems implements Consumable {
     public void activate(Playable character){
         character.addHP((int) (character.getHPMax()*0.1));
     }
+
+    @Override
+    public String toString(){
+        return "Red Mushroom";
+    }
 }

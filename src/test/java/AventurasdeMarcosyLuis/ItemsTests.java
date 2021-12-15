@@ -103,4 +103,10 @@ public class ItemsTests {
         assertEquals(3,testMarcos.getFP());
     }
 
+    @Test
+    public void toStringTest(){
+        assertEquals("Honey Syrup", testHoneySyrup.toString());
+        assertEquals("Red Mushroom", testRedMushroom.toString());
+    }
+
 }

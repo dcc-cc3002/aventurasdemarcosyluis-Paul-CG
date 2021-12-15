@@ -2,6 +2,7 @@ package AventurasdeMarcosyLuis.Characters.Heroes;
 
 import AventurasdeMarcosyLuis.Characters.Enemies.Wicked;
 import AventurasdeMarcosyLuis.Characters.Playable;
+import AventurasdeMarcosyLuis.Phases.Exceptions.InvalidTargetException;
 
 /**
  * Implements the attacks and defense of all Heroes (or Players).
@@ -26,14 +27,14 @@ public interface Heroic extends Playable {
 
     /**
      * Defines that all Heroes must have a jump attack
-     * @param o objective of the attack
+     * @param enemy objective of the attack
      */
-    void jump(Wicked o);
+    void jump(Wicked enemy) throws InvalidTargetException;
 
     /**
      * Defines that all Heroes must have a hammer attack
-     * @param o objective of the attack
+     * @param enemy objective of the attack
      */
-    void hammer(Wicked o);
+    void hammer(Wicked enemy) throws InvalidTargetException;
 
 }

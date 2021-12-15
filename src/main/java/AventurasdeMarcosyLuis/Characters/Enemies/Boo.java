@@ -3,6 +3,7 @@ package AventurasdeMarcosyLuis.Characters.Enemies;
 import AventurasdeMarcosyLuis.Characters.Heroes.AttackableByBoo;
 import AventurasdeMarcosyLuis.Characters.Heroes.Heroic;
 import AventurasdeMarcosyLuis.Characters.Playable;
+import AventurasdeMarcosyLuis.Phases.Exceptions.InvalidTargetException;
 
 /**
  * Creates template with shared data of all types of characters in the game
@@ -25,15 +26,19 @@ public class Boo extends AbstractEnemies {
     }
 
     @Override
-    public void attack(Heroic player){
-        this.attack((AttackableByBoo) player);
+    public void attack(Heroic player) throws InvalidTargetException {
+        try {
+            this.auxiliaryAttack((AttackableByBoo) player);
+        } catch (ClassCastException e) {
+            throw new InvalidTargetException("Boo can only attack Luis!");
+        }
     }
 
     /**
      * Simple attack on a player. This private version is to cast locally to AttackableByBoo.
      * @param player the target of the attack.
      */
-    private void attack(AttackableByBoo player) {
+    private void auxiliaryAttack(AttackableByBoo player) {
         player.defendFromBoo(this);
     }
 
@@ -54,6 +59,11 @@ public class Boo extends AbstractEnemies {
     public void defendFromMarcosHammer(Playable player) {
         int dmg = 0;
         this.addHP(dmg);
+    }
+
+    @Override
+    public String toString() {
+        return "Boo";
     }
 
 }

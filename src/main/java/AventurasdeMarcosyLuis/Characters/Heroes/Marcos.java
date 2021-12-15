@@ -64,4 +64,10 @@ public class Marcos extends AbstractPlayers {
         int dmg = this.damage(enemy.getK(),enemy, this);
         this.addHP(dmg);
     }
+
+    @Override
+    public String toString() {
+        return "Marcos";
+    }
+
 }

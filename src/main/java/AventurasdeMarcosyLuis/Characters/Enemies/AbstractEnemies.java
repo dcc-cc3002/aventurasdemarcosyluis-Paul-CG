@@ -2,6 +2,7 @@ package AventurasdeMarcosyLuis.Characters.Enemies;
 
 import AventurasdeMarcosyLuis.Characters.AbstractCharacter;
 import AventurasdeMarcosyLuis.Characters.Heroes.Heroic;
+import AventurasdeMarcosyLuis.Phases.Exceptions.InvalidTargetException;
 
 /**
  * Creates an abstract Enemy, it fixes the K value for all enemies
@@ -20,5 +21,5 @@ public abstract class AbstractEnemies extends AbstractCharacter implements Wicke
     }
 
     @Override
-    public void attack(Heroic o) {    }
+    public void attack(Heroic o)  throws InvalidTargetException {    }
 }

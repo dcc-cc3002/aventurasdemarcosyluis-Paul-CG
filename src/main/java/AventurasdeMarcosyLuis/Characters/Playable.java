@@ -1,11 +1,14 @@
 package AventurasdeMarcosyLuis.Characters;
 
-
 /**
  * This Playable interface shares all basics methods that all Characters need.
  */
 public interface Playable {
 
+    /**
+     * Get the current level of a Character
+     * @return
+     */
     int getLVL();
 
     /**
@@ -118,5 +121,8 @@ public interface Playable {
      */
     void lvlUp();
 
-
+    /**
+     * toString returns the name (or type) of a Character
+     */
+    String toString();
 }

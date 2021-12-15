@@ -75,4 +75,10 @@ public class Goomba extends AbstractEnemies implements AttackableByLuis {
         else dmg = this.damage(player.getKHammer(), player, this);
         this.addHP(dmg);
     }
+
+    @Override
+    public String toString() {
+        return "Goomba";
+    }
+
 }
